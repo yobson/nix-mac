@@ -1,5 +1,7 @@
 { pkgs, config, ... }: 
 {
+
+  imports = [./windows.nix];
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search by name, run:
@@ -12,6 +14,10 @@
       gnupg
       pinentry_mac
     ];
+
+  fonts.packages = with pkgs; [
+    fira-code
+  ];
 
   homebrew = {
     enable = true;
@@ -92,5 +98,6 @@
     name = "jameshobson";
     home = /Users/jameshobson;
   };
+
 }
 
