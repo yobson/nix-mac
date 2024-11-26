@@ -39,6 +39,9 @@
   };
 
   system.defaults = {
+    dock.tilesize = 42;
+    dock.show-recents = false;
+    dock.show-process-indicators = true;
     dock.persistent-apps = [
       "/System/Cryptexes/App/System/Applications/Safari.app"
       "/System/Applications/Launchpad.app"
@@ -64,6 +67,7 @@
 
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToEscape = true;
+  security.pam.enableSudoTouchIdAuth = true;
 
 
   system.activationScripts.applications.text = let
@@ -92,11 +96,10 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 5;
 
-  nixpkgs.hostPlatform = "aarch64-darwin";
-
   users.users.jameshobson = {
     name = "jameshobson";
     home = /Users/jameshobson;
+    shell = pkgs.bashInteractive;
   };
 
 }

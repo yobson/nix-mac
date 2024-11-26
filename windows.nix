@@ -1,11 +1,11 @@
-{ ... }: {
+{ pkgs, ... }: {
   services.skhd = {
-    enable = true;
+    enable = false;
     skhdConfig = builtins.readFile ./skhdrc.conf;
   };
 
   services.yabai = {
-    enable = true;
+    enable = false;
     enableScriptingAddition = true;
     config = {
       mouse_follows_focus          = "off";
@@ -45,5 +45,52 @@
       yabai -m rule --add app="JetBrains Toolbox" manage=off
       yabai -m rule --add title="Outlook Preferences" manage=off
     '';
+  };
+  services.aerospace = {
+    enable = true;
+    settings = {
+      gaps = {
+        outer.left = 12;
+        outer.bottom = 12;
+        outer.top = 12;
+        outer.right = 12;
+        inner.horizontal = 8;
+        inner.vertical = 8;
+      };
+    mode.main.binding = {
+      alt-shift-q = "close";
+      alt-enter = "exec-and-forget open -a ${pkgs.iterm2}/Applications/iTerm2.app $HOME";
+      alt-f = "macos-native-fullscreen";
+      alt-left = "focus left";
+      alt-down = "focus down";
+      alt-up = "focus up";
+      alt-right = "focus right";
+
+      alt-shift-left = "move left";
+      alt-shift-down = "move down";
+      alt-shift-up = "move up";
+      alt-shift-right = "move right";
+
+      alt-1 = "workspace 1";
+      alt-2 = "workspace 2";
+      alt-3 = "workspace 3";
+      alt-4 = "workspace 4";
+      alt-5 = "workspace 5";
+      alt-6 = "workspace 6";
+      alt-7 = "workspace 7";
+      alt-8 = "workspace 8";
+      alt-9 = "workspace 9";
+
+      alt-shift-1 = "move-node-to-workspace 1";
+      alt-shift-2 = "move-node-to-workspace 2";
+      alt-shift-3 = "move-node-to-workspace 3";
+      alt-shift-4 = "move-node-to-workspace 4";
+      alt-shift-5 = "move-node-to-workspace 5";
+      alt-shift-6 = "move-node-to-workspace 6";
+      alt-shift-7 = "move-node-to-workspace 7";
+      alt-shift-8 = "move-node-to-workspace 8";
+      alt-shift-9 = "move-node-to-workspace 9";
+    };
+    };
   };
 }

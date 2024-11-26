@@ -11,13 +11,7 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
-  let homebrewConf = {
-        enable = true;
-        enableRosetta = true;
-        user = "jameshobson";
-        autoMigrate = true;
-      }; 
-      homeConf = {
+  let homeConf = {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.jameshobson = import ./home.nix;
@@ -31,15 +25,36 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .
     darwinConfigurations."MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
-      modules = [ 
-        # Set Git commit hash for darwin-version.
-        ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
-        ./configuration.nix
-        nix-homebrew.darwinModules.nix-homebrew { nix-homebrew = homebrewConf; }
-        home-manager.darwinModules.home-manager homeConf
-      ];
-    };
+        modules = [ 
+          # Set Git commit hash for darwin-version.
+          ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
+          ./aarch64.nix
+          nix-homebrew.darwinModules.nix-homebrew { 
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = "jameshobson";
+              autoMigrate = true;
+            };
+          }
+          home-manager.darwinModules.home-manager homeConf
+        ];
+      };
 
-    darwinPackages = self.darwinConfigurations."MacBook-Pro-2".pkgs;
+    darwinConfigurations."James-MacBook-Personal" = nix-darwin.lib.darwinSystem {
+        modules = [ 
+          # Set Git commit hash for darwin-version.
+          ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
+          ./amd64.nix
+          nix-homebrew.darwinModules.nix-homebrew { 
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = false;
+              user = "jameshobson";
+            };
+          }
+          home-manager.darwinModules.home-manager homeConf
+        ];
+      };
   };
 }
