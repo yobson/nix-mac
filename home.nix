@@ -24,7 +24,7 @@
     userEmail = "james@hobson.space";
     userName = "James Hobson";
     signing.signByDefault = true;
-    signing.key = "D5E8";
+    signing.key = "D5E8 7B99 20A0 F392 857E  6212 27B6 62CE FCE9 BE00";
   };
 
 
