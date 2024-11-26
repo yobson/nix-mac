@@ -33,6 +33,7 @@
     masApps = {
       "UTM" = 1538878817;
       "reMarkable" = 1276493162;
+      "(beat)" = 1549538329;
     };
     onActivation.autoUpdate = true;
     onActivation.upgrade = true;
@@ -46,6 +47,7 @@
       "/System/Cryptexes/App/System/Applications/Safari.app"
       "/System/Applications/Launchpad.app"
       "/Applications/reMarkable.app"
+      "/Applications/Beat.app"
       "/System/Applications/Mail.app"
       "/System/Applications/Messages.app"
       "/System/Applications/Calendar.app"
