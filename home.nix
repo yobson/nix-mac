@@ -6,6 +6,8 @@
   home.username = "jameshobson";
   home.homeDirectory = /Users/jameshobson;
 
+  programs.bash.enable = true;
+
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
@@ -27,6 +29,25 @@
     signing.key = "D5E8 7B99 20A0 F392 857E  6212 27B6 62CE FCE9 BE00";
   };
 
+  programs.powerline-go = {
+    enable = true;
+    modules = [
+      "ssh"
+      "cwd"
+      "perms"
+      "git"
+      "hg"
+      "jobs"
+      "exit"
+      "root"
+    ];
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   home.stateVersion = "24.05";
 

@@ -98,10 +98,14 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 5;
 
+  programs.bash.enable = true;
+  environment.shells = with pkgs; [ bashInteractive ];
+  
+  
+
   users.users.jameshobson = {
     name = "jameshobson";
     home = /Users/jameshobson;
-    shell = pkgs.bashInteractive;
   };
 
 }
