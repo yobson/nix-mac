@@ -32,13 +32,10 @@
   programs.powerline-go = {
     enable = true;
     modules = [
-      "ssh"
+      "nix-shell"
       "cwd"
-      "perms"
       "git"
-      "hg"
       "jobs"
-      "exit"
       "root"
     ];
   };
