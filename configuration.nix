@@ -18,6 +18,10 @@
 
   fonts.packages = with pkgs; [
     fira-code
+    font-awesome
+    powerline-fonts
+    powerline-symbols
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   homebrew = {
