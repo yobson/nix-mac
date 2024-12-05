@@ -39,6 +39,7 @@
       "UTM" = 1538878817;
       "reMarkable" = 1276493162;
       "(beat)" = 1549538329;
+      "Zeroconf Browser" = 1355001318;
     };
     onActivation.autoUpdate = true;
     onActivation.upgrade = true;
