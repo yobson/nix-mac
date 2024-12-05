@@ -8,6 +8,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs;
     [ vim
+      neovim
       mkalias
       unnaturalscrollwheels
       iterm2
@@ -61,6 +62,7 @@
       "/System/Applications/App Store.app"
       "/System/Applications/Passwords.app"
       "/System/Applications/iPhone Mirroring.app"
+      "${pkgs.vscodium}/Applications/VSCodium.app"
       "/System/Applications/System Settings.app"
     ];
     loginwindow.GuestEnabled = false;

@@ -49,6 +49,17 @@
     nix-direnv.enable = true;
   };
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      vscodevim.vim
+      haskell.haskell
+      mkhl.direnv
+      banacorn.agda-mode
+    ];
+  };
+
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
