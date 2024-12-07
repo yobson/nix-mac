@@ -40,6 +40,21 @@
     ];
   };
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    plugins = with pkgs.vimPlugins; [
+      { plugin = vimtex; }
+      { plugin = vim-polyglot; }
+    ];
+    extraConfig = ''
+      filetype plugin on
+      syntax on
+    '';
+  };
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
