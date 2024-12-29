@@ -6,6 +6,12 @@
   home.username = "jameshobson";
   home.homeDirectory = /Users/jameshobson;
 
+  home.packages = [
+    (pkgs.writeShellScriptBin "haskell" ''
+       nix-shell -p ghc cabal-install haskell-language-server
+    '')
+  ];
+
   programs.bash.enable = true;
 
   programs.gpg.enable = true;
@@ -46,14 +52,39 @@
     viAlias = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
-      { plugin = vimtex; }
-      { plugin = vim-polyglot; }
+      vimtex
+      nvim-treesitter.withAllGrammars
+      lualine-nvim
+      tabline-nvim
+      coq_nvim
+      { 
+        plugin = nvim-lspconfig;
+        type = "lua";
+        config = ''
+          require('lspconfig')['hls'].setup{
+            filetypes = { 'haskell', 'lhaskell', 'cabal' },
+          }
+        '';
+      }
     ];
+    extraLuaConfig = ''
+      require("config")
+    '';
     extraConfig = ''
       filetype plugin on
       syntax on
+      set number
+      set expandtab
+      set tabstop=2
+      set shiftwidth=2
+      set splitright
     '';
   };
+
+  xdg.configFile."nvim/lua/config" = {
+      recursive = true;
+      source = ./nvim-lua;
+    };
 
   programs.direnv = {
     enable = true;
