@@ -12,7 +12,12 @@
     '')
   ];
 
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      source ~/.ghcup/env
+    '';
+  };
 
   programs.gpg.enable = true;
   services.gpg-agent = {
