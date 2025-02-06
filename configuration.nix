@@ -17,6 +17,7 @@
       net-news-wire
       racket
       skimpdf
+      quilt
     ];
 
   fonts.packages = with pkgs; [
