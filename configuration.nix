@@ -14,6 +14,9 @@
       iterm2
       gnupg
       pinentry_mac
+      net-news-wire
+      racket
+      skimpdf
     ];
 
   fonts.packages = with pkgs; [
@@ -68,6 +71,7 @@
       "/System/Applications/Passwords.app"
       "/System/Applications/iPhone Mirroring.app"
       "${pkgs.vscodium}/Applications/VSCodium.app"
+      "${pkgs.net-news-wire}/Applications/NetNewsWire.app"
       "/System/Applications/System Settings.app"
     ];
     loginwindow.GuestEnabled = false;

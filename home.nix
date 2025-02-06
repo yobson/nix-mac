@@ -16,6 +16,7 @@
     enable = true;
     initExtra = ''
       source ~/.ghcup/env
+      export PATH=$PATH:/Users/jameshobson/.local/bin
     '';
   };
 
@@ -62,6 +63,7 @@
       lualine-nvim
       tabline-nvim
       coq_nvim
+      agda-vim
       { 
         plugin = nvim-lspconfig;
         type = "lua";

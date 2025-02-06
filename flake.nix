@@ -24,7 +24,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .
-    darwinConfigurations."MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."tiddles" = nix-darwin.lib.darwinSystem {
         modules = [ 
           # Set Git commit hash for darwin-version.
           ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
