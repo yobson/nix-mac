@@ -93,6 +93,12 @@
       source = ./nvim-lua;
     };
 
+  home.file = {
+    ".latexmkrc" = {
+      source = ./dotfiles/latexmkrc;
+    };
+  };
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
