@@ -1,0 +1,586 @@
+{"§" = {
+  "O" = {
+    "m" = {
+      "e" = {
+        "g" = {
+          "a" = ("insertText:", "Ω");
+        };
+      };
+    };
+  };
+  "P" = {
+    "s" = {
+      "i" = ("insertText:", "Ψ");
+    };
+    "h" = {
+      "i" = ("insertText:", "Φ");
+    };
+    "i" = ("insertText:", "Π");
+  };
+  "S" = {
+    "i" = {
+      "g" = {
+        "m" = {
+          "a" = ("insertText:", "Σ");
+        };
+      };
+    };
+  };
+  "X" = {
+    "i" = ("insertText:", "Ξ");
+  };
+  "L" = {
+    "a" = {
+      "m" = {
+        "b" = {
+          "d" = {
+            "a" = ("insertText:", "Λ");
+          };
+        };
+      };
+    };
+  };
+  "T" = {
+    "h" = {
+      "e" = {
+        "t" = {
+          "a" = ("insertText:", "Θ");
+        };
+      };
+    };
+  };
+  "D" = {
+    "e" = {
+      "l" = {
+        "t" = {
+          "a" = ("insertText:", "Δ");
+        };
+      };
+    };
+  };
+  "G" = {
+    "a" = {
+      "m" = {
+        "m" = {
+          "a" = ("insertText:", "Γ");
+        };
+      };
+    };
+  };
+  "o" = {
+    "m" = {
+      "e" = {
+        "g" = {
+          "a" = ("insertText:", "ψ");
+        };
+      };
+    };
+  };
+  "p" = {
+    "s" = {
+      "i" = ("insertText:", "ψ");
+    };
+    "h" = {
+      "i" = ("insertText:", "φ");
+    };
+    "i" = ("insertText:", "π");
+    "r" = {
+      "e" = {
+        "q" = {
+          "=" = ("insertText:", "≼");
+          "s" = ("insertText:", "≺");
+        };
+      };
+      "o" = {
+        "d" = ("insertText:", "∏");
+      };
+    };
+  };
+  "c" = {
+    "h" = {
+      "i" = ("insertText:", "χ");
+    };
+    "a" = {
+      "p" = ("insertText:", "∩");
+    };
+    "u" = {
+      "p" = ("insertText:", "∪");
+    };
+    "i" = ("insertText:", "●");
+    "o" = {
+      "m" = {
+        "p" = ("insertText:", "∘");
+      };
+    };
+  };
+  "u" = {
+    "p" = ("insertText:", "↑");
+  };
+  "t" = {
+    "a" = {
+      "u" = ("insertText:", "τ");
+    };
+    "h" = {
+      "e" = {
+        "t" = {
+          "a" = ("insertText:", "θ");
+        };
+      };
+      "u" = {
+        "s" = ("insertText:", "∴");
+      };
+    };
+    "i" = {
+      "m" = {
+        "e" = {
+          "s" = ("insertText:", "×");
+        };
+      };
+    };
+    "o" = ("insertText:", "→");
+  };
+  "s" = {
+    "i" = {
+      "g" = {
+        "m" = {
+          "a" = ("insertText:", "σ");
+        };
+      };
+    };
+    "e" = {
+      "t" = {
+        "m" = {
+          "i" = {
+            "n" = {
+              "u" = {
+                "s" = ("insertText:", "∖");
+              };
+            };
+          };
+        };
+      };
+    };
+    "u" = {
+      "c" = {
+        "c" = {
+          "=" = ("insertText:", "≽");
+          "s" = ("insertText:", "≻");
+        };
+      };
+      "p" = {
+        "=" = ("insertText:", "⊇");
+        "s" = ("insertText:", "⊃");
+      };
+      "b" = {
+        "=" = ("insertText:", "⊆");
+        "s" = ("insertText:", "⊂");
+      };
+      "m" = ("insertText:", "∑");
+    };
+    "q" = {
+      "s" = {
+        "u" = {
+          "p" = {
+            "=" = ("insertText:", "⊒");
+            "s" = ("insertText:", "⊐");
+          };
+          "b" = {
+            "=" = ("insertText:", "⊑");
+            "s" = ("insertText:", "⊏");
+          };
+        };
+      };
+    };
+    "t" = {
+      "a" = {
+        "r" = ("insertText:", "⋆");
+      };
+    };
+  };
+  "r" = {
+    "h" = {
+      "o" = ("insertText:", "ρ");
+    };
+    "a" = {
+      "n" = {
+        "g" = {
+          "l" = {
+            "e" = ("insertText:", "〉");
+          };
+        };
+      };
+    };
+  };
+  "x" = {
+    "i" = ("insertText:", "ξ");
+  };
+  "n" = {
+    "u" = ("insertText:", "ν");
+    "e" = {
+      "g" = ("insertText:", "¬");
+    };
+    "o" = {
+      "t" = ("insertText:", "̸");
+    };
+  };
+  "m" = {
+    "u" = ("insertText:", "μ");
+    "c" = {
+      "Z" = ("insertText:", "𝓩");
+      "Y" = ("insertText:", "𝓨");
+      "X" = ("insertText:", "𝓧");
+      "W" = ("insertText:", "𝓦");
+      "V" = ("insertText:", "𝓥");
+      "U" = ("insertText:", "𝓤");
+      "T" = ("insertText:", "𝓣");
+      "S" = ("insertText:", "𝓢");
+      "R" = ("insertText:", "𝓡");
+      "Q" = ("insertText:", "𝓠");
+      "P" = ("insertText:", "𝓟");
+      "O" = ("insertText:", "𝓞");
+      "N" = ("insertText:", "𝓝");
+      "M" = ("insertText:", "𝓜");
+      "L" = ("insertText:", "𝓛");
+      "K" = ("insertText:", "𝓚");
+      "J" = ("insertText:", "𝓙");
+      "I" = ("insertText:", "𝓘");
+      "H" = ("insertText:", "𝓗");
+      "G" = ("insertText:", "𝓖");
+      "F" = ("insertText:", "𝓕");
+      "E" = ("insertText:", "𝓔");
+      "D" = ("insertText:", "𝓓");
+      "C" = ("insertText:", "𝓒");
+      "B" = ("insertText:", "𝓑");
+      "A" = ("insertText:", "𝓐");
+      "z" = ("insertText:", "𝔃");
+      "y" = ("insertText:", "𝔂");
+      "x" = ("insertText:", "𝔁");
+      "w" = ("insertText:", "𝔀");
+      "v" = ("insertText:", "𝓿");
+      "u" = ("insertText:", "𝓾");
+      "t" = ("insertText:", "𝓽");
+      "s" = ("insertText:", "𝓼");
+      "r" = ("insertText:", "𝓻");
+      "q" = ("insertText:", "𝓺");
+      "p" = ("insertText:", "𝓹");
+      "o" = ("insertText:", "𝓸");
+      "n" = ("insertText:", "𝓷");
+      "m" = ("insertText:", "𝓶");
+      "l" = ("insertText:", "𝓵");
+      "k" = ("insertText:", "𝓴");
+      "j" = ("insertText:", "𝓳");
+      "i" = ("insertText:", "𝓲");
+      "h" = ("insertText:", "𝓱");
+      "g" = ("insertText:", "𝓰");
+      "f" = ("insertText:", "𝓯");
+      "e" = ("insertText:", "𝓮");
+      "d" = ("insertText:", "𝓭");
+      "c" = ("insertText:", "𝓬");
+      "b" = ("insertText:", "𝓫");
+      "a" = ("insertText:", "𝓪");
+    };
+    "a" = {
+      "p" = {
+        "s" = {
+          "t" = {
+            "o" = ("insertText:", "↦");
+          };
+        };
+      };
+    };
+  };
+  "l" = {
+    "a" = {
+      "m" = {
+        "b" = {
+          "d" = {
+            "a" = ("insertText:", "λ");
+          };
+        };
+      };
+      "n" = {
+        "g" = {
+          "l" = {
+            "e" = ("insertText:", "〈");
+          };
+        };
+      };
+    };
+  };
+  "k" = {
+    "a" = {
+      "p" = {
+        "p" = {
+          "a" = ("insertText:", "κ");
+        };
+      };
+    };
+  };
+  "i" = {
+    "o" = {
+      "t" = {
+        "a" = ("insertText:", "ι");
+      };
+    };
+    "n" = ("insertText:", "∈");
+  };
+  "e" = {
+    "t" = {
+      "a" = ("insertText:", "η");
+    };
+    "p" = {
+      "s" = {
+        "i" = {
+          "l" = {
+            "o" = {
+              "n" = ("insertText:", "ε");
+            };
+          };
+        };
+      };
+    };
+    "q" = {
+      "u" = {
+        "i" = {
+          "v" = ("insertText:", "≡");
+        };
+      };
+    };
+    "x" = {
+      "i" = {
+        "s" = {
+          "t" = {
+            "s" = ("insertText:", "∃");
+          };
+        };
+      };
+    };
+  };
+  "z" = {
+    "e" = {
+      "t" = {
+        "a" = ("insertText:", "ζ");
+      };
+    };
+  };
+  "d" = {
+    "e" = {
+      "l" = {
+        "t" = {
+          "a" = ("insertText:", "δ");
+        };
+      };
+    };
+    "o" = {
+      "t" = {
+        "s" = ("insertText:", "…");
+      };
+      "w" = {
+        "n" = ("insertText:", "↓");
+      };
+    };
+    "i" = {
+      "v" = ("insertText:", "÷");
+    };
+  };
+  "g" = {
+    "a" = {
+      "m" = {
+        "m" = {
+          "a" = ("insertText:", "γ");
+        };
+      };
+    };
+  };
+  "b" = {
+    "e" = ("insertText:", "𝕖");
+    "z" = ("insertText:", "𝕫");
+    "y" = ("insertText:", "𝕪");
+    "x" = ("insertText:", "𝕩");
+    "w" = ("insertText:", "𝕨");
+    "v" = ("insertText:", "𝕧");
+    "u" = ("insertText:", "𝕦");
+    "t" = ("insertText:", "𝕥");
+    "s" = ("insertText:", "𝕤");
+    "r" = ("insertText:", "𝕣");
+    "q" = ("insertText:", "𝕢");
+    "p" = ("insertText:", "𝕡");
+    "o" = ("insertText:", "𝕠");
+    "n" = ("insertText:", "𝕟");
+    "m" = ("insertText:", "𝕞");
+    "l" = ("insertText:", "𝕝");
+    "k" = ("insertText:", "𝕜");
+    "j" = ("insertText:", "𝕛");
+    "i" = ("insertText:", "𝕚");
+    "h" = ("insertText:", "𝕙");
+    "g" = ("insertText:", "𝕘");
+    "f" = ("insertText:", "𝕗");
+    "d" = ("insertText:", "𝕕");
+    "c" = ("insertText:", "𝕔");
+    "b" = ("insertText:", "𝕓");
+    "a" = ("insertText:", "𝕒");
+    "9" = ("insertText:", "𝟡");
+    "8" = ("insertText:", "𝟠");
+    "7" = ("insertText:", "𝟟");
+    "6" = ("insertText:", "𝟞");
+    "5" = ("insertText:", "𝟝");
+    "4" = ("insertText:", "𝟜");
+    "3" = ("insertText:", "𝟛");
+    "2" = ("insertText:", "𝟚");
+    "1" = ("insertText:", "𝟙");
+    "0" = ("insertText:", "𝟘");
+    "Z" = ("insertText:", "ℤ");
+    "Y" = ("insertText:", "𝕐");
+    "X" = ("insertText:", "𝕏");
+    "W" = ("insertText:", "𝕎");
+    "V" = ("insertText:", "𝕍");
+    "U" = ("insertText:", "𝕌");
+    "T" = ("insertText:", "𝕋");
+    "S" = ("insertText:", "𝕊");
+    "R" = ("insertText:", "ℝ");
+    "Q" = ("insertText:", "ℚ");
+    "P" = ("insertText:", "ℙ");
+    "O" = ("insertText:", "𝕆");
+    "N" = ("insertText:", "ℕ");
+    "M" = ("insertText:", "𝕄");
+    "L" = ("insertText:", "𝕃");
+    "K" = ("insertText:", "𝕂");
+    "J" = ("insertText:", "𝕁");
+    "I" = ("insertText:", "𝕀");
+    "H" = ("insertText:", "ℍ");
+    "G" = ("insertText:", "𝔾");
+    "F" = ("insertText:", "𝔽");
+    "E" = ("insertText:", "𝔼");
+    "D" = ("insertText:", "𝔻");
+    "C" = ("insertText:", "ℂ");
+    "B" = ("insertText:", "𝔹");
+    "A" = ("insertText:", "𝔸");
+  };
+  "a" = {
+    "l" = {
+      "p" = {
+        "h" = {
+          "a" = ("insertText:", "α");
+        };
+      };
+    };
+    "p" = {
+      "p" = {
+        "r" = {
+          "o" = {
+            "x" = ("insertText:", "≈");
+          };
+        };
+      };
+    };
+  };
+  "_" = {
+    "x" = ("insertText:", "ₓ");
+    "v" = ("insertText:", "ᵥ");
+    "u" = ("insertText:", "ᵤ");
+    "t" = ("insertText:", "ₜ");
+    "s" = ("insertText:", "ₛ");
+    "r" = ("insertText:", "ᵣ");
+    "p" = ("insertText:", "ₚ");
+    "o" = ("insertText:", "ₒ");
+    "n" = ("insertText:", "ₙ");
+    "m" = ("insertText:", "ₘ");
+    "l" = ("insertText:", "ₗ");
+    "k" = ("insertText:", "ₖ");
+    "j" = ("insertText:", "ⱼ");
+    "i" = ("insertText:", "ᵢ");
+    "h" = ("insertText:", "ₕ");
+    "e" = ("insertText:", "ₑ");
+    "a" = ("insertText:", "ₐ");
+    "9" = ("insertText:", "₉");
+    "8" = ("insertText:", "₈");
+    "7" = ("insertText:", "₇");
+    "6" = ("insertText:", "₆");
+    "5" = ("insertText:", "₅");
+    "4" = ("insertText:", "₄");
+    "3" = ("insertText:", "₃");
+    "2" = ("insertText:", "₂");
+    "1" = ("insertText:", "₁");
+    "0" = ("insertText:", "₀");
+  };
+  "+" = {
+    "+" = ("insertText:", "⧺");
+  };
+  "\\~" = {
+    "\\~" = ("insertText:", "≈");
+    "-" = ("insertText:", "≃");
+    "=" = ("insertText:", "≅");
+  };
+  "v" = {
+    "D" = {
+      "a" = {
+        "s" = {
+          "h" = ("insertText:", "⊨");
+        };
+      };
+    };
+    "d" = {
+      "a" = {
+        "s" = {
+          "h" = ("insertText:", "⊢");
+        };
+      };
+    };
+    "e" = {
+      "e" = ("insertText:", "∨");
+    };
+  };
+  "." = ("insertText:", "∙");
+  "|" = {
+    "-" = {
+      ">" = ("insertText:", "↦");
+    };
+  };
+  ":" = {
+    "=" = ("insertText:", "≔");
+  };
+  "=" = ("insertText:", "＝");
+  "w" = {
+    "e" = {
+      "d" = {
+        "g" = {
+          "e" = ("insertText:", "∧");
+        };
+      };
+    };
+  };
+  "<" = {
+    "=" = ("insertText:", "≤");
+    "-" = ("insertText:", "←");
+    "<" = ("insertText:", "⟨");
+  };
+  ">" = {
+    "=" = ("insertText:", "≥");
+    ">" = ("insertText:", "⟩");
+  };
+  "-" = {
+    ">" = ("insertText:", "→");
+  };
+  "q" = {
+    "e" = {
+      "d" = ("insertText:", "∎");
+    };
+  };
+  "]" = {
+    "]" = ("insertText:", "⟧");
+  };
+  "[" = {
+    "[" = ("insertText:", "⟦");
+  };
+  "f" = {
+    "o" = {
+      "r" = {
+        "a" = {
+          "l" = {
+            "l" = ("insertText:", "∀");
+          };
+        };
+      };
+    };
+  };
+};}
