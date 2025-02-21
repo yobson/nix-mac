@@ -45,6 +45,14 @@
 
   programs.powerline-go = {
     enable = true;
+    settings = {
+      jobs = "$(jobs -p | wc -l)";
+    };
+    pathAliases = {
+      "\\~/gits" = "";
+      "/Volumes/Projects" = "";
+      "\\~/syncthing" = "";
+    };
     modules = [
       "nix-shell"
       "cwd"
