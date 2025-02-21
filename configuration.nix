@@ -15,7 +15,7 @@
       gnupg
       pinentry_mac
       net-news-wire
-      racket
+      # racket
       skimpdf
       quilt
     ];
