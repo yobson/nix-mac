@@ -66,6 +66,9 @@
       tabline-nvim
       coq_nvim
       agda-vim
+      melange-nvim
+      nerdtree
+      vim-devicons
       { 
         plugin = nvim-lspconfig;
         type = "lua";
@@ -82,22 +85,34 @@
     extraConfig = ''
       filetype plugin on
       syntax on
+      filetype plugin indent on
+      set ttyfast
       set number
       set expandtab
       set tabstop=2
+      set softtabstop=2
       set shiftwidth=2
       set splitright
+      set autoindent
+      set nowrap
+      set nocompatible 
+      set modeline
     '';
   };
 
-  xdg.configFile."nvim/lua/config" = {
+  xdg.configFile = {
+    "nvim/lua/config" = {
       recursive = true;
       source = ./nvim-lua;
     };
+  };
 
   home.file = {
     ".latexmkrc" = {
       source = ./dotfiles/latexmkrc;
+    };
+    ".ghci" = {
+      source = ./dotfiles/ghci;
     };
     "Library/KeyBindings/DefaultKeyBinding.dict" = {
       source = ./DefaultKeyBinding.dict;
