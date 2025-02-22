@@ -1,5 +1,6 @@
+require("config.lsp")
 require("config.treesitter")
 require("config.lualine")
 require("config.tabline")
-require("config.coq")
+require("config.completion")
 require("config.theme")

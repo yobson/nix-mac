@@ -81,15 +81,7 @@
       melange-nvim
       nerdtree
       vim-devicons
-      { 
-        plugin = nvim-lspconfig;
-        type = "lua";
-        config = ''
-          require('lspconfig')['hls'].setup{
-            filetypes = { 'haskell', 'lhaskell', 'cabal' },
-          }
-        '';
-      }
+      nvim-lspconfig
     ];
     extraLuaConfig = ''
       require("config")
