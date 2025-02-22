@@ -72,7 +72,11 @@
       nvim-treesitter.withAllGrammars
       lualine-nvim
       tabline-nvim
-      coq_nvim
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
       agda-vim
       melange-nvim
       nerdtree
