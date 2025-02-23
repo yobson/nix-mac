@@ -392,8 +392,32 @@
       };
     };
   };
+  "B" = {
+    "e" = {
+      "t" = {
+        "a" = ("insertText:", "β");
+      };
+    };
+  };
+  "a" = {
+    "l" = {
+      "p" = {
+        "h" = {
+          "a" = ("insertText:", "α");
+        };
+      };
+    };
+    "p" = {
+      "p" = {
+        "r" = {
+          "o" = {
+            "x" = ("insertText:", "≈");
+          };
+        };
+      };
+    };
+  };
   "b" = {
-    "e" = ("insertText:", "𝕖");
     "z" = ("insertText:", "𝕫");
     "y" = ("insertText:", "𝕪");
     "x" = ("insertText:", "𝕩");
@@ -415,6 +439,7 @@
     "h" = ("insertText:", "𝕙");
     "g" = ("insertText:", "𝕘");
     "f" = ("insertText:", "𝕗");
+    "e" = ("insertText:", "𝕖");
     "d" = ("insertText:", "𝕕");
     "c" = ("insertText:", "𝕔");
     "b" = ("insertText:", "𝕓");
@@ -455,24 +480,6 @@
     "C" = ("insertText:", "ℂ");
     "B" = ("insertText:", "𝔹");
     "A" = ("insertText:", "𝔸");
-  };
-  "a" = {
-    "l" = {
-      "p" = {
-        "h" = {
-          "a" = ("insertText:", "α");
-        };
-      };
-    };
-    "p" = {
-      "p" = {
-        "r" = {
-          "o" = {
-            "x" = ("insertText:", "≈");
-          };
-        };
-      };
-    };
   };
   "_" = {
     "x" = ("insertText:", "ₓ");
