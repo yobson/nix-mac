@@ -49,6 +49,7 @@
   services.aerospace = {
     enable = true;
     settings = {
+      after-startup-command = [ "layout tiles" ];
       gaps = {
         outer.left = 12;
         outer.bottom = 12;
