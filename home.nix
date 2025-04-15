@@ -118,8 +118,13 @@
     ".ghci" = {
       source = ./dotfiles/ghci;
     };
-    "Library/KeyBindings/DefaultKeyBinding.dict" = {
+    "Library/KeyBindings/DefaultKeyBindingNix.dict" = {
       source = ./DefaultKeyBinding.dict;
+      onChange = ''
+        rm -f ${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict
+        cp ${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBindingNix.dict ${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict
+        chmod 764 ${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict
+      '';
     };
   };
 

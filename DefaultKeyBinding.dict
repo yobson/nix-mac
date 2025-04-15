@@ -48,6 +48,7 @@
         };
       };
     };
+    "o" = ("insertText:", "⇒");
   };
   "D" = {
     "e" = {
@@ -389,6 +390,9 @@
         };
       };
     };
+    "m" = {
+      "b" = ("insertText:", "↪");
+    };
     "x" = {
       "i" = {
         "s" = {
@@ -464,6 +468,13 @@
     };
   };
   "b" = {
+    "]" = ("insertText:", "┘");
+    "[" = ("insertText:", "└");
+    ")" = ("insertText:", "┐");
+    "(" = ("insertText:", "┌");
+    "-" = ("insertText:", "─");
+    "+" = ("insertText:", "┼");
+    "|" = ("insertText:", "│");
     "z" = ("insertText:", "𝕫");
     "y" = ("insertText:", "𝕪");
     "x" = ("insertText:", "𝕩");
