@@ -74,7 +74,7 @@
       "/System/Applications/App Store.app"
       "/System/Applications/Passwords.app"
       "/System/Applications/iPhone Mirroring.app"
-      "${pkgs.vscodium}/Applications/VSCodium.app"
+      "/Applications/Emacs.app"
       "${pkgs.net-news-wire}/Applications/NetNewsWire.app"
       "/System/Applications/System Settings.app"
     ];

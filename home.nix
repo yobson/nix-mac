@@ -82,7 +82,7 @@
       nerdtree
       vim-devicons
       nvim-lspconfig
-      cornelis
+      # cornelis
     ];
     extraLuaConfig = ''
       require("config")
@@ -119,16 +119,16 @@
     nix-direnv.enable = true;
   };
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    profiles.default.extensions = with pkgs.vscode-extensions; [
-      vscodevim.vim
-      haskell.haskell
-      mkhl.direnv
-      banacorn.agda-mode
-    ];
-  };
+  #  programs.vscode = {
+  #    enable = true;
+  #    package = pkgs.vscodium;
+  #    profiles.default.extensions = with pkgs.vscode-extensions; [
+  #      vscodevim.vim
+  #      haskell.haskell
+  #      mkhl.direnv
+  #      banacorn.agda-mode
+  #    ];
+  #  };
 
   home.stateVersion = "24.05";
 
