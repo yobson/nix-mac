@@ -99,12 +99,10 @@
   };
 
   home.file = {
-    ".latexmkrc" = {
-      source = ./dotfiles/latexmkrc;
-    };
-    ".ghci" = {
-      source = ./dotfiles/ghci;
-    };
+    ".latexmkrc".source = ./dotfiles/latexmkrc;
+    ".ghci".source = ./dotfiles/ghci;
+    ".emacs".source = ./dotfiles/emacs;
+
     "Library/KeyBindings/DefaultKeyBindingNix.dict" = {
       source = ./DefaultKeyBinding.dict;
       onChange = ''
