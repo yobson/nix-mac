@@ -39,6 +39,9 @@
       "gnu-tar"
       "gawk"
     ];
+    casks = [
+      "emacs"
+    ];
     masApps = {
       "UTM" = 1538878817;
       "reMarkable" = 1276493162;

@@ -82,26 +82,13 @@
       nerdtree
       vim-devicons
       nvim-lspconfig
+      cornelis
     ];
     extraLuaConfig = ''
       require("config")
     '';
-    extraConfig = ''
-      filetype plugin on
-      syntax on
-      filetype plugin indent on
-      set ttyfast
-      set number
-      set expandtab
-      set tabstop=2
-      set softtabstop=2
-      set shiftwidth=2
-      set splitright
-      set autoindent
-      set nowrap
-      set nocompatible 
-      set modeline
-    '';
+    extraConfig = builtins.readFile ./vimrc;
+    extraPackages = [ pkgs.cornelis ];
   };
 
   xdg.configFile = {
