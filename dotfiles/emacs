@@ -16,7 +16,7 @@
   :config
   (evil-mode 1)
   (setq evil-undo-system 'undo-redo)
-  (define-key evil-normal-state-map (kbd "C-r") 'evil-redo))
+  (setq evil-vsplit-window-right t))
 
 ;; Optional evil plugin
 (use-package evil-visual-mark-mode
@@ -89,6 +89,9 @@
 
 
 (require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
 
 (set-face-attribute 'org-level-1 nil :height 1.5)
 (set-face-attribute 'org-level-2 nil :height 1.3)
@@ -96,7 +99,9 @@
 (set-face-attribute 'org-level-4 nil :height 1.0)
 (set-face-attribute 'org-document-title nil :height 1.8)
 (setq org-src-fontify-natively t)
+(setq org-latex-compiler "xelatex")
 (setq org-latex-create-formula-image-program 'dvisvgm)
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
 
 
 
@@ -110,3 +115,11 @@
              (shell-command-to-string "agda-mode locate")))
         (message "Agda is not installed or not in PATH; skipping Agda mode setup.")))
   (error (message "Failed to load Agda mode: %s" err)))
+
+(use-package polymode)
+(add-to-list 'load-path (expand-file-name "~/.config/emacs/"))
+(require 'org-agda-mode)
+
+(add-to-list 'auto-mode-alist '("\\.lagda.org" . org-agda-mode))
+(add-to-list 'auto-mode-alist '("\\.lagda.tex" . agda2-mode))
+(add-to-list 'auto-mode-alist '("\\.lagda.md" . agda2-mode))

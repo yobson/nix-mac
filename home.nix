@@ -87,7 +87,7 @@
     extraLuaConfig = ''
       require("config")
     '';
-    extraConfig = builtins.readFile ./vimrc;
+    extraConfig = builtins.readFile ./dotfiles/vimrc;
     extraPackages = [ pkgs.cornelis ];
   };
 
@@ -95,6 +95,10 @@
     "nvim/lua/config" = {
       recursive = true;
       source = ./nvim-lua;
+    };
+    "emacs" = {
+      recursive = true;
+      source = ./emacs;
     };
   };
 

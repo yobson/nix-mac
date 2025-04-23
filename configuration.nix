@@ -7,7 +7,13 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs;
-    [ vim
+    let tex = (pkgs.texlive.combine {
+        inherit (pkgs.texlive) scheme-basic
+        dvisvgm dvipng # for preview and export as html
+        wrapfig amsmath ulem hyperref capt-of
+        fontspec bbold bboldx bbold-type1 esint;
+      });
+    in [ vim
       neovim
       mkalias
       unnaturalscrollwheels
@@ -18,6 +24,7 @@
       # racket
       skimpdf
       quilt
+      tex
     ];
 
   fonts.packages = with pkgs; [
