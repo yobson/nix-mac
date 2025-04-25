@@ -103,7 +103,35 @@
 (setq org-latex-create-formula-image-program 'dvisvgm)
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
 
+;; Scaling latex org mode
 
+(defun my/org-latex-refresh-preview-scaling ()
+  "Refresh Org LaTeX preview images to match current text scale."
+  (when (eq major-mode 'org-mode)
+    (setq org-format-latex-options
+          (plist-put org-format-latex-options
+                     :scale (+ 1.5 (* 0.5 (or text-scale-mode-amount 0)))))
+    (org-clear-latex-preview)
+    (org-latex-preview)))
+
+(defun my/org-update-latex-on-scale (&rest _args)
+  "Update LaTeX preview scaling when text is scaled."
+  (when (eq major-mode 'org-mode)
+    (my/org-latex-refresh-preview-scaling)))
+
+(advice-add 'text-scale-increase :after #'my/org-update-latex-on-scale)
+(advice-add 'text-scale-decrease :after #'my/org-update-latex-on-scale)
+
+;;end
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((shell   . t)
+   (haskell . t)))
+(setq org-confirm-babel-evaluate nil)
+
+;; Fallback for Unicode symbols
+(set-fontset-font t 'unicode "JuliaMono" nil 'prepend)
 
 ;(load-file (let ((coding-system-for-read 'utf-8))
 ;                (shell-command-to-string "agda-mode locate")))
@@ -123,3 +151,6 @@
 (add-to-list 'auto-mode-alist '("\\.lagda.org" . org-agda-mode))
 (add-to-list 'auto-mode-alist '("\\.lagda.tex" . agda2-mode))
 (add-to-list 'auto-mode-alist '("\\.lagda.md" . agda2-mode))
+
+(prefer-coding-system 'utf-8)
+
