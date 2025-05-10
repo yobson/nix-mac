@@ -11,7 +11,9 @@
         inherit (pkgs.texlive) scheme-basic
         dvisvgm dvipng # for preview and export as html
         wrapfig amsmath ulem hyperref capt-of
-        fontspec bbold bboldx bbold-type1 esint;
+        fontspec bbold bboldx bbold-type1 esint
+        metafont collection-fontsextra collection-fontsrecommended
+        ec cm-super parskip;
       });
     in [ vim
       neovim
@@ -25,6 +27,7 @@
       skimpdf
       quilt
       tex
+      (agda.withPackages (p: [ p.standard-library ]))
     ];
 
   fonts.packages = with pkgs; [
@@ -49,14 +52,14 @@
     casks = [
       "emacs"
     ];
-    masApps = {
-      "UTM" = 1538878817;
-      "reMarkable" = 1276493162;
-      "(beat)" = 1549538329;
-      "Zeroconf Browser" = 1355001318;
-    };
-    onActivation.autoUpdate = true;
-    onActivation.upgrade = true;
+    #masApps = {
+    #  "UTM" = 1538878817;
+    #  "reMarkable" = 1276493162;
+    #  "(beat)" = 1549538329;
+    #  "Zeroconf Browser" = 1355001318;
+    #};
+    #onActivation.autoUpdate = true;
+    #onActivation.upgrade = true;
   };
 
   system.defaults = {

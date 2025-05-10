@@ -9,6 +9,8 @@
 
 ;;; Code:
 
+(use-package polymode)
+
 (require 'polymode)
 (require 'agda2-mode)
 
