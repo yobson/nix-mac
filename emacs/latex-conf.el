@@ -124,6 +124,8 @@
   :defer t
   :hook ((LaTeX-mode . LaTeX-math-mode)
          (LaTeX-mode . turn-on-reftex)
+         (LaTeX-mode . visual-line-mode)
+         (DocView-mode . auto-revert-mode)
          (LaTeX-mode . flyspell-mode))
   :config
   (setq TeX-auto-save t

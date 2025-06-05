@@ -21,6 +21,8 @@
 
 ;; Evil Mode
 (use-package evil
+  :init
+  (setq evil-respect-visual-line-mode t)
   :config
   (evil-mode 1)
   (setq evil-undo-system 'undo-redo)
