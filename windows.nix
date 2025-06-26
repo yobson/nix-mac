@@ -1,11 +1,11 @@
 { pkgs, ... }: {
   services.skhd = {
-    enable = false;
+    enable = true;
     skhdConfig = builtins.readFile ./skhdrc.conf;
   };
 
   services.yabai = {
-    enable = false;
+    enable = true;
     enableScriptingAddition = true;
     config = {
       mouse_follows_focus          = "off";
@@ -47,7 +47,7 @@
     '';
   };
   services.aerospace = {
-    enable = true;
+    enable = false;
     settings = {
       after-startup-command = [ "layout tiles" ];
       gaps = {
