@@ -98,6 +98,7 @@
 (require 'maths-blocks)
 (require 'latex-conf)
 (require 'org-conf)
+(require 'markdown-conf)
 
 (add-to-list 'auto-mode-alist '("\\.lagda.org" . org-agda-mode))
 (add-to-list 'auto-mode-alist '("\\.lagda.tex" . agda2-mode))
