@@ -17,8 +17,8 @@
     initExtra = ''
       source ~/.ghcup/env
       export PATH=$PATH:/Users/jameshobson/.local/bin
-      export PLAN9=/Volumes/Projects/plan9
-      export PATH=$PATH:/Volumes/Projects/plan9/bin/
+      export PLAN9=${pkgs.plan9port}/plan9
+      export PATH=$PATH:${pkgs.plan9port}/plan9/bin
     '';
   };
 

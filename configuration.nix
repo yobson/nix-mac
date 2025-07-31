@@ -27,6 +27,7 @@
       skimpdf
       quilt
       tex
+      plan9port
       (agda.withPackages (p: [ p.standard-library ]))
     ];
 
