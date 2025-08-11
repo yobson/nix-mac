@@ -82,6 +82,7 @@
       nerdtree
       vim-devicons
       nvim-lspconfig
+      markdown-preview-nvim
       # cornelis
     ];
     extraLuaConfig = ''
@@ -99,6 +100,10 @@
     "emacs" = {
       recursive = true;
       source = ./emacs;
+    };
+    "scripts" = {
+      recursive = true;
+      source = ./dotfiles/scripts;
     };
   };
 

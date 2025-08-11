@@ -28,6 +28,8 @@
       quilt
       tex
       plan9port
+      ffmpeg_6-full
+      audacity
       (agda.withPackages (p: [ p.standard-library ]))
     ];
 
@@ -63,6 +65,7 @@
     #onActivation.upgrade = true;
   };
 
+  system.primaryUser = "jameshobson";
   system.defaults = {
     dock.tilesize = 42;
     dock.show-recents = false;
