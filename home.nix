@@ -10,6 +10,12 @@
     (pkgs.writeShellScriptBin "haskell" ''
        nix-shell -p ghc cabal-install haskell-language-server
     '')
+    pkgs.audacity
+    pkgs.iterm2
+    pkgs.net-news-wire
+    pkgs.skimpdf
+    pkgs.pinentry_mac
+    pkgs.unnaturalscrollwheels
   ];
 
   programs.bash = {
@@ -27,7 +33,7 @@
     enable = true;
     defaultCacheTtl = 600;
     maxCacheTtl = 7200;
-    pinentryPackage = pkgs.pinentry_mac;
+    pinentry.package = pkgs.pinentry_mac;
     enableScDaemon = false;
   };
 
