@@ -87,6 +87,7 @@
     ];
     loginwindow.GuestEnabled = false;
     NSGlobalDomain.AppleICUForce24HourTime = true;
+    NSGlobalDomain._HIHideMenuBar = true;
   };
 
   system.keyboard.enableKeyMapping = true;

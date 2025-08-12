@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, lib, config, ... }: {
   services.skhd = {
     enable = true;
-    skhdConfig = builtins.readFile ./skhdrc.conf;
+    skhdConfig = builtins.readFile ./dotfiles/skhdrc.conf;
   };
 
   services.yabai = {
@@ -30,7 +30,7 @@
       mouse_action2                = "resize";
       mouse_drop_action            = "swap";
       layout                       = "bsp";
-      top_padding                  = 12;
+      top_padding                  = 44;
       bottom_padding               = 12;
       left_padding                 = 12;
       right_padding                = 12;
@@ -46,6 +46,47 @@
       yabai -m rule --add title="Outlook Preferences" manage=off
     '';
   };
+
+  services.sketchybar = {
+    enable = true;
+    config = builtins.concatStringsSep "\n" [
+               (builtins.readFile ./sketchy/colors.sh)
+               (builtins.readFile ./sketchy/icon_map.sh)
+               (builtins.readFile ./sketchy/add_separator.sh)
+               (builtins.readFile ./sketchy/sketchybarrc)
+               (builtins.readFile ./sketchy/sketchy-items/logo.sh)
+               (builtins.readFile ./sketchy/sketchy-items/spaces.sh)
+               (builtins.readFile ./sketchy/sketchy-items/frontapp.sh)
+               (builtins.readFile ./sketchy/sketchy-items/menus.sh)
+               (builtins.readFile ./sketchy/sketchy-items/calendar.sh)
+               (builtins.readFile ./sketchy/sketchy-items/mic.sh)
+               (builtins.readFile ./sketchy/sketchy-items/volume.sh)
+               (builtins.readFile ./sketchy/sketchy-items/battery.sh)
+               (builtins.readFile ./sketchy/sketchy-items/wifi.sh)
+               (builtins.readFile ./sketchy/sketchy-items/display.sh)
+               (builtins.readFile ./sketchy/sketchy-items/more-menu.sh)
+               (builtins.readFile ./sketchy/sketchy-items/packages.sh)
+               (builtins.readFile ./sketchy/sketchy-items/controls.sh)
+               (builtins.readFile ./sketchy/sketchy-items/music.sh)
+               (builtins.readFile ./sketchy/sketchy-items/cpu.sh)
+               (builtins.readFile ./sketchy/sketchyset.sh)
+      ];
+  };
+  environment.systemPackages =
+      lib.optionals config.services.sketchybar.enable [
+      # pkgs.menubar-cli
+        pkgs.imagemagick
+      #  pkgs.macmon
+      ];
+
+    homebrew.brews = lib.optionals config.services.sketchybar.enable [
+      "media-control"
+    ];
+
+    fonts.packages = lib.optionals config.services.sketchybar.enable [
+      pkgs.sketchybar-app-font
+    ];
+
   services.aerospace = {
     enable = false;
     settings = {
