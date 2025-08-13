@@ -61,33 +61,37 @@
 
   system.primaryUser = "jameshobson";
   system.defaults = {
-    dock.tilesize = 42;
-    dock.show-recents = false;
-    dock.show-process-indicators = true;
-    dock.persistent-apps = [
-      "/System/Cryptexes/App/System/Applications/Safari.app"
-      "/System/Applications/Launchpad.app"
-      "/Applications/reMarkable.app"
-      "/Applications/Beat.app"
-      "/System/Applications/Mail.app"
-      "/System/Applications/Messages.app"
-      "/System/Applications/Calendar.app"
-      "/System/Applications/Notes.app"
-      "/System/Applications/TV.app"
-      # notion
-      "/System/Applications/Home.app"
-      #gpg keychain
-      "/System/Applications/Music.app"
-      "/System/Applications/App Store.app"
-      "/System/Applications/Passwords.app"
-      "/System/Applications/iPhone Mirroring.app"
-      "/Applications/Emacs.app"
-      "${pkgs.net-news-wire}/Applications/NetNewsWire.app"
-      "/System/Applications/System Settings.app"
-    ];
+    dock = {
+      autohide = true;
+      tilesize = 42;
+      show-recents = false;
+      show-process-indicators = true;
+      persistent-apps = [
+        "/System/Cryptexes/App/System/Applications/Safari.app"
+        "/System/Applications/Launchpad.app"
+        "/Applications/reMarkable.app"
+        "/Applications/Beat.app"
+        "/System/Applications/Mail.app"
+        "/System/Applications/Messages.app"
+        "/System/Applications/Calendar.app"
+        "/System/Applications/Notes.app"
+        "/System/Applications/TV.app"
+        # notion
+        "/System/Applications/Home.app"
+        #gpg keychain
+        "/System/Applications/Music.app"
+        "/System/Applications/App Store.app"
+        "/System/Applications/Passwords.app"
+        "/System/Applications/iPhone Mirroring.app"
+        "/Applications/Emacs.app"
+        "${pkgs.net-news-wire}/Applications/NetNewsWire.app"
+        "/System/Applications/System Settings.app"
+      ];
+    };
     loginwindow.GuestEnabled = false;
     NSGlobalDomain.AppleICUForce24HourTime = true;
     NSGlobalDomain._HIHideMenuBar = true;
+    NSGlobalDomain.NSWindowShouldDragOnGesture = true;
   };
 
   system.keyboard.enableKeyMapping = true;
