@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "jameshobson";
-  home.homeDirectory = /Users/jameshobson;
+  home.username = user;
+  home.homeDirectory = "/Users/${user}";
 
   home.packages = [
     (pkgs.writeShellScriptBin "haskell" ''

@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: 
+{ pkgs, config, homedir, user, ... }: 
 {
 
   imports = [./windows.nix];
@@ -65,7 +65,6 @@
     #onActivation.upgrade = true;
   };
 
-  system.primaryUser = "jameshobson";
   system.defaults = {
     dock = {
       autohide = true;
@@ -115,9 +114,10 @@
   
   
 
-  users.users.jameshobson = {
-    name = "jameshobson";
-    home = /Users/jameshobson;
+  system.primaryUser = user;
+  users.users.${user} = {
+    name = user;
+    home = homedir;
   };
 
 }

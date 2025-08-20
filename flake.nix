@@ -13,10 +13,10 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util }:
-  let homeConf = {
+  let homeConf = user: {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.jameshobson = import ./home.nix;
+        home-manager.users.${user} = import ./home.nix;
         home-manager.backupFileExtension = "hm-backup";
         home-manager.sharedModules = [
           mac-app-util.homeManagerModules.default
@@ -28,7 +28,11 @@
   in
   {
     # Build darwin flake using:
-    darwinConfigurations."James-MacBook-Personal" = nix-darwin.lib.darwinSystem {
+   darwinConfigurations."James-MacBook-Personal" = nix-darwin.lib.darwinSystem {
+        specialArgs = {
+          user = "jameshobson";
+          homedir = "/Users/jameshobson";
+        };
         modules = [ 
           # Set Git commit hash for darwin-version.
           ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
@@ -40,7 +44,22 @@
               user = "jameshobson";
             };
           }
-          home-manager.darwinModules.home-manager homeConf
+          home-manager.darwinModules.home-manager (homeConf "jameshobson")
+        ];
+      };
+    darwinConfigurations."James-MacBook-work" = nix-darwin.lib.darwinSystem {
+        modules = [ 
+          # Set Git commit hash for darwin-version.
+          ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
+          ./aarch64.nix
+          nix-homebrew.darwinModules.nix-homebrew { 
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = "james.hobson";
+            };
+          }
+          home-manager.darwinModules.home-manager (homeConf "james.hobson")
         ];
       };
   };
