@@ -12,6 +12,7 @@
 
 (setq-default truncate-lines t)
 
+(setq ispell-program-name "hunspell")
 (setenv
   "DICPATH"
   (concat (getenv "HOME") "/Library/Spelling"))
@@ -20,17 +21,17 @@
 (setq ispell-local-dictionary "en_GB")
 
 ;; Evil Mode
-(use-package evil
-  :init
-  (setq evil-respect-visual-line-mode t)
-  :config
-  (evil-mode 1)
-  (setq evil-undo-system 'undo-redo)
-  (setq evil-vsplit-window-right t))
-
-;; Optional evil plugin
-(use-package evil-visual-mark-mode
-  :after evil)
+;; (use-package evil
+;;   :init
+;;   (setq evil-respect-visual-line-mode t)
+;;   :config
+;;   (evil-mode 1)
+;;   (setq evil-undo-system 'undo-redo)
+;;   (setq evil-vsplit-window-right t))
+;; 
+;; ;; Optional evil plugin
+;; (use-package evil-visual-mark-mode
+;;   :after evil)
 
 (use-package company
   :config

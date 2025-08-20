@@ -23,6 +23,8 @@
       quilt
       tex
       plan9port
+      ispell
+      hunspell
       ffmpeg_6-full
       (agda.withPackages (p: [ p.standard-library ]))
     ];
@@ -45,9 +47,13 @@
       "grep"
       "gnu-tar"
       "gawk"
+      "emacs-plus"
+    ];
+    taps = [
+      "d12frosted/emacs-plus"
     ];
     casks = [
-      "emacs"
+      # "emacs"
     ];
     #masApps = {
     #  "UTM" = 1538878817;
