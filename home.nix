@@ -7,8 +7,8 @@
   home.homeDirectory = "/Users/${username}";
 
   home.packages = [
-    (pkgs.writeShellScriptBin "haskell" ''
-       nix-shell -p ghc cabal-install haskell-language-server
+    (pkgs.writeShellScriptBin "nix-rebuild" ''
+       sudo darwin-rebuild switch --flake /Users/${username}/.config/nix
     '')
     pkgs.audacity
     pkgs.iterm2
@@ -127,6 +127,8 @@
         auctex
         mixed-pitch
         polymode
+	nix-mode
+	inkpot-theme
       ];
   };
 

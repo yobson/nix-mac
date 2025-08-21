@@ -44,6 +44,7 @@
       yabai -m rule --add app="Installer" manage=off
       yabai -m rule --add app="JetBrains Toolbox" manage=off
       yabai -m rule --add title="Outlook Preferences" manage=off
+      yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
     '';
   };
 

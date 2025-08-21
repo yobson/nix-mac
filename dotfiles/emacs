@@ -38,6 +38,8 @@
 
 
 (use-package haskell-mode)
+(use-package nix-mode
+  :mode "\\.nix\\'")
 
 (use-package eglot
   :ensure t
@@ -54,7 +56,7 @@
   (eglot-confirm-server-initiated-edits nil)  ;; allow edits without confirmation
   )
 
-(use-package spacemacs-theme)
+(use-package inkpot-theme)
 
 (setq inhibit-startup-screen t)
 (setq latex-preview-pane-use-frame nil) ; Optional: use same frame

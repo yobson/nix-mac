@@ -67,7 +67,7 @@
       persistent-apps = [
         "/System/Cryptexes/App/System/Applications/Safari.app"
         "/System/Applications/Launchpad.app"
-        "/Applications/reMarkable.app"
+        #"/Applications/reMarkable.app"
         "/System/Applications/Mail.app"
         "/System/Applications/Messages.app"
         "/System/Applications/Calendar.app"
@@ -80,7 +80,7 @@
         "/System/Applications/App Store.app"
         "/System/Applications/Passwords.app"
         "/System/Applications/iPhone Mirroring.app"
-        "/Applications/Emacs.app"
+        "${pkgs.emacsMacport}/Applications/Emacs.app"
         "${pkgs.net-news-wire}/Applications/NetNewsWire.app"
         "/System/Applications/System Settings.app"
       ];
