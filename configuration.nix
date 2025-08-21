@@ -67,13 +67,13 @@
       persistent-apps = [
         "/System/Cryptexes/App/System/Applications/Safari.app"
         "/System/Applications/Launchpad.app"
-        #"/Applications/reMarkable.app"
+        "/Applications/reMarkable.app"
+        "/Applications/Notion.app"
         "/System/Applications/Mail.app"
         "/System/Applications/Messages.app"
         "/System/Applications/Calendar.app"
         "/System/Applications/Notes.app"
         "/System/Applications/TV.app"
-        # notion
         "/System/Applications/Home.app"
         #gpg keychain
         "/System/Applications/Music.app"

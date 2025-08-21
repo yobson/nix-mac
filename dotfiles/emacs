@@ -10,11 +10,12 @@
 (setq use-package-always-ensure t)
 
 (setq-default truncate-lines t)
+(setq mac-option-modifier 'meta)
 
 (setq ispell-program-name "hunspell")
 (setenv
   "DICPATH"
-  (concat (getenv "HOME") "/Library/Spelling"))
+  (concat (getenv "HOME") "/.config/dictionaries"))
 
 (setenv "DICTIONARY" "en_GB")
 (setq ispell-local-dictionary "en_GB")

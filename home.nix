@@ -141,6 +141,10 @@
       recursive = true;
       source = ./emacs;
     };
+    "dictionaries" = {
+      recursive = true;
+      source = ./dictionaries;
+    };
     "scripts" = {
       recursive = true;
       source = ./dotfiles/scripts;
