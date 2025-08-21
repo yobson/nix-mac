@@ -12,6 +12,11 @@
 (setq-default truncate-lines t)
 (setq mac-option-modifier 'meta)
 
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns x))
+  :config
+  (exec-path-from-shell-initialize))  
+  
 (setq ispell-program-name "hunspell")
 (setenv
   "DICPATH"
@@ -57,11 +62,11 @@
   (eglot-confirm-server-initiated-edits nil)  ;; allow edits without confirmation
   )
 
-(use-package inkpot-theme)
+(use-package nano-theme)
 
 (setq inhibit-startup-screen t)
 (setq latex-preview-pane-use-frame nil) ; Optional: use same frame
-(load-theme 'spacemacs-light t)
+(load-theme 'nano-light t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -74,15 +79,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Berkeley Mono" :foundry "nil" :slant normal :weight regular :height 140 :width normal)))))
+ '(default ((t (:family "Berkeley Mono" :foundry "nil" :slant normal :weight regular :height 150 :width normal)))))
 
 (transient-mark-mode 1)
 
 ;; Set default variable-pitch font globally
-(set-face-attribute 'variable-pitch nil :family "Arial" :height 140)  ;; Replace with your preferred variable-pitch font
+(set-face-attribute 'variable-pitch nil :family "SF Pro Text" :height 150)  ;; Replace with your preferred variable-pitch font
 
 ;; Set default fixed-pitch font globally
-(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 140)  ;; Replace with your preferred fixed-pitch font
+(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 150)  ;; Replace with your preferred fixed-pitch font
 (set-fontset-font t 'unicode "JuliaMono" nil 'prepend)
 
 ;(load-file (let ((coding-system-for-read 'utf-8))

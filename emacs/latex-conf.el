@@ -28,7 +28,7 @@
                   font-latex-warning-face
                   font-latex-sedate-face
                   font-latex-string-face
-                  font-latex-sectioning-5-face
+                  ;; font-latex-sectioning-5-face
                   font-lock-comment-face
                   font-lock-function-name-face
                   font-lock-keyword-face

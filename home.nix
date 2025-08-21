@@ -16,6 +16,8 @@
     pkgs.skimpdf
     pkgs.pinentry_mac
     pkgs.unnaturalscrollwheels
+    pkgs.ispell
+    pkgs.hunspell
   ];
 
   programs.bash = {
@@ -118,7 +120,7 @@
         company
         haskell-mode
         eglot
-        spacemacs-theme
+        # spacemacs-theme
         direnv
         org
         org-bullets
@@ -127,8 +129,9 @@
         auctex
         mixed-pitch
         polymode
-	nix-mode
-	inkpot-theme
+        nix-mode
+        #inkpot-theme
+        nano-theme
       ];
   };
 

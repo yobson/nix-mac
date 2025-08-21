@@ -15,16 +15,11 @@
         metafont collection-fontsextra collection-fontsrecommended
         ec cm-super parskip;
       });
-    in [ vim
-      neovim
-      mkalias
+    in [ mkalias
       gnupg
-      # racket
       quilt
       tex
       plan9port
-      ispell
-      hunspell
       ffmpeg_6-full
       (agda.withPackages (p: [ p.standard-library ]))
     ];
