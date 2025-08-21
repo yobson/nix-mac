@@ -50,7 +50,7 @@
           home-manager.darwinModules.home-manager (homeConf "jameshobson")
         ];
       };
-    darwinConfigurations."tiddles" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
         specialArgs = {
           user = "james.hobson";
           homedir = "/Users/james.hobson";
