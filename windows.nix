@@ -30,7 +30,7 @@
       mouse_action2                = "resize";
       mouse_drop_action            = "swap";
       layout                       = "bsp";
-      top_padding                  = 44;
+      top_padding                  = 12;
       bottom_padding               = 12;
       left_padding                 = 12;
       right_padding                = 12;

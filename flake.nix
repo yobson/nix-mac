@@ -14,9 +14,12 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util }:
   let homeConf = user: {
+        home-manager.extraSpecialArgs = {
+          username = user;
+        };
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.${user} = import ./home.nix;
+        home-manager.users.${user} = ./home.nix;
         home-manager.backupFileExtension = "hm-backup";
         home-manager.sharedModules = [
           mac-app-util.homeManagerModules.default
@@ -47,7 +50,11 @@
           home-manager.darwinModules.home-manager (homeConf "jameshobson")
         ];
       };
-    darwinConfigurations."James-MacBook-work" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."tiddles" = nix-darwin.lib.darwinSystem {
+        specialArgs = {
+          user = "james.hobson";
+          homedir = "/Users/james.hobson";
+        };
         modules = [ 
           # Set Git commit hash for darwin-version.
           ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })

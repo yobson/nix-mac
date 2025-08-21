@@ -1,7 +1,6 @@
 (setenv "LANG" "en_GB.UTF-8")
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -88,22 +87,24 @@
 (condition-case err
     (let ((agda-path (executable-find "agda-mode")))
       (if agda-path
-          (load-file
-           (let ((coding-system-for-read 'utf-8))
-             (shell-command-to-string "agda-mode locate")))
+          (begin
+            (load-file
+             (let ((coding-system-for-read 'utf-8))
+               (shell-command-to-string "agda-mode locate")))
+
+          (add-to-list 'auto-mode-alist '("\\.lagda.org" . org-agda-mode))
+          (add-to-list 'auto-mode-alist '("\\.lagda.tex" . agda2-mode))
+          (add-to-list 'auto-mode-alist '("\\.lagda.md" . agda2-mode)))
+
         (message "Agda is not installed or not in PATH; skipping Agda mode setup.")))
   (error (message "Failed to load Agda mode: %s" err)))
 
 (add-to-list 'load-path (expand-file-name "~/.config/emacs/"))
-(require 'org-agda-mode)
-(require 'maths-blocks)
-(require 'latex-conf)
-(require 'org-conf)
-(require 'markdown-conf)
-
-(add-to-list 'auto-mode-alist '("\\.lagda.org" . org-agda-mode))
-(add-to-list 'auto-mode-alist '("\\.lagda.tex" . agda2-mode))
-(add-to-list 'auto-mode-alist '("\\.lagda.md" . agda2-mode))
+; (require 'org-agda-mode)
+; (require 'maths-blocks)
+; (require 'latex-conf)
+; (require 'org-conf)
+; (require 'markdown-conf)
 
 (prefer-coding-system 'utf-8)
 

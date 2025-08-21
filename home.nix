@@ -1,10 +1,10 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, username, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = user;
-  home.homeDirectory = "/Users/${user}";
+  home.username = username;
+  home.homeDirectory = "/Users/${username}";
 
   home.packages = [
     (pkgs.writeShellScriptBin "haskell" ''
@@ -25,6 +25,7 @@
       export PATH=$PATH:/Users/jameshobson/.local/bin
       export PLAN9=${pkgs.plan9port}/plan9
       export PATH=$PATH:${pkgs.plan9port}/plan9/bin
+      export LANG=en_GB.UTF-8
     '';
   };
 
@@ -96,6 +97,37 @@
     '';
     extraConfig = builtins.readFile ./dotfiles/vimrc;
     extraPackages = [ pkgs.cornelis ];
+  };
+
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacsMacport;
+    extraConfig = builtins.concatStringsSep "\n" [
+      # latex-conf.el		markdown-conf.el	maths-blocks.el		org-agda-mode.el	org-conf.el
+      (builtins.readFile ./emacs/latex-conf.el)
+      (builtins.readFile ./emacs/markdown-conf.el)
+      (builtins.readFile ./emacs/maths-blocks.el)
+      # (builtins.readFile ./emacs/org-agda-mode.el)
+      (builtins.readFile ./emacs/org-conf.el)
+      (builtins.readFile ./dotfiles/emacs)
+    ];
+
+    extraPackages = epkgs: with epkgs;
+      [ evil
+        evil-visual-mark-mode
+        company
+        haskell-mode
+        eglot
+        spacemacs-theme
+        direnv
+        org
+        org-bullets
+        org-special-block-extras
+        markdown-mode
+        auctex
+        mixed-pitch
+        polymode
+      ];
   };
 
   xdg.configFile = {

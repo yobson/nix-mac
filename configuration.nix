@@ -47,13 +47,6 @@
       "grep"
       "gnu-tar"
       "gawk"
-      "emacs-plus"
-    ];
-    taps = [
-      "d12frosted/emacs-plus"
-    ];
-    casks = [
-      # "emacs"
     ];
     #masApps = {
     #  "UTM" = 1538878817;
@@ -75,7 +68,6 @@
         "/System/Cryptexes/App/System/Applications/Safari.app"
         "/System/Applications/Launchpad.app"
         "/Applications/reMarkable.app"
-        "/Applications/Beat.app"
         "/System/Applications/Mail.app"
         "/System/Applications/Messages.app"
         "/System/Applications/Calendar.app"
