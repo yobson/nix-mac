@@ -12,7 +12,7 @@
 (use-package polymode)
 
 (require 'polymode)
-(require 'agda2-mode)
+;; (require 'agda2-mode)
 
 (defgroup org-agda-mode nil
   "org-agda-mode customisations"

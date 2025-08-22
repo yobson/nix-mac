@@ -68,7 +68,7 @@
                (builtins.readFile ./sketchy/sketchy-items/more-menu.sh)
                (builtins.readFile ./sketchy/sketchy-items/packages.sh)
                (builtins.readFile ./sketchy/sketchy-items/controls.sh)
-               (builtins.readFile ./sketchy/sketchy-items/music.sh)
+      # (builtins.readFile ./sketchy/sketchy-items/music.sh)
                (builtins.readFile ./sketchy/sketchy-items/cpu.sh)
                (builtins.readFile ./sketchy/sketchyset.sh)
       ];

@@ -66,7 +66,7 @@
 
 (setq inhibit-startup-screen t)
 (setq latex-preview-pane-use-frame nil) ; Optional: use same frame
-(load-theme 'nano-light t)
+(load-theme 'nano-dark t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -89,30 +89,6 @@
 ;; Set default fixed-pitch font globally
 (set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 150)  ;; Replace with your preferred fixed-pitch font
 (set-fontset-font t 'unicode "JuliaMono" nil 'prepend)
-
-;(load-file (let ((coding-system-for-read 'utf-8))
-;                (shell-command-to-string "agda-mode locate")))
-(condition-case err
-    (let ((agda-path (executable-find "agda-mode")))
-      (if agda-path
-          (begin
-            (load-file
-             (let ((coding-system-for-read 'utf-8))
-               (shell-command-to-string "agda-mode locate")))
-
-          (add-to-list 'auto-mode-alist '("\\.lagda.org" . org-agda-mode))
-          (add-to-list 'auto-mode-alist '("\\.lagda.tex" . agda2-mode))
-          (add-to-list 'auto-mode-alist '("\\.lagda.md" . agda2-mode)))
-
-        (message "Agda is not installed or not in PATH; skipping Agda mode setup.")))
-  (error (message "Failed to load Agda mode: %s" err)))
-
-(add-to-list 'load-path (expand-file-name "~/.config/emacs/"))
-; (require 'org-agda-mode)
-; (require 'maths-blocks)
-; (require 'latex-conf)
-; (require 'org-conf)
-; (require 'markdown-conf)
 
 (prefer-coding-system 'utf-8)
 

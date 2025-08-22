@@ -21,7 +21,6 @@
       tex
       plan9port
       ffmpeg_6-full
-      (agda.withPackages (p: [ p.standard-library ]))
     ];
 
   fonts.packages = with pkgs; [
@@ -64,6 +63,7 @@
         "/System/Applications/Launchpad.app"
         "/Applications/reMarkable.app"
         "/Applications/Notion.app"
+        "${pkgs.iterm2}/Applications/iTerm2"
         "/System/Applications/Mail.app"
         "/System/Applications/Messages.app"
         "/System/Applications/Calendar.app"

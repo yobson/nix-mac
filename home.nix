@@ -18,6 +18,7 @@
     pkgs.unnaturalscrollwheels
     pkgs.ispell
     pkgs.hunspell
+    (pkgs.agda.withPackages (p: [ p.standard-library ]))
   ];
 
   programs.bash = {
@@ -103,15 +104,21 @@
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacsMacport;
+    package = pkgs.emacs;
     extraConfig = builtins.concatStringsSep "\n" [
-      # latex-conf.el		markdown-conf.el	maths-blocks.el		org-agda-mode.el	org-conf.el
       (builtins.readFile ./emacs/latex-conf.el)
       (builtins.readFile ./emacs/markdown-conf.el)
       (builtins.readFile ./emacs/maths-blocks.el)
-      # (builtins.readFile ./emacs/org-agda-mode.el)
       (builtins.readFile ./emacs/org-conf.el)
       (builtins.readFile ./dotfiles/emacs)
+      ''
+      (setq agda2-program "${pkgs.agda}/bin/agda")
+      
+      (load-file
+       (let ((coding-system-for-read 'utf-8))
+         (shell-command-to-string "${pkgs.agda}/bin/agda-mode locate")))
+      ''
+      # (builtins.readFile ./emacs/org-agda-mode.el)
     ];
 
     extraPackages = epkgs: with epkgs;
