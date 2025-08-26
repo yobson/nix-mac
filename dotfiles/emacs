@@ -62,11 +62,51 @@
   (eglot-confirm-server-initiated-edits nil)  ;; allow edits without confirmation
   )
 
-(use-package nano-theme)
+(use-package ligature
+  :load-path "path-to-ligature-repo"
+  :config
+  (ligature-set-ligatures
+   'prog-mode
+   '(; Group A
+     ".." ".=" "..." "..<" "::" ":::" ":=" "::=" ";;" ";;;" "??" "???"
+     ".?" "?." ":?" "?:" "?=" "**" "***" "/*" "*/" "/**"
+     ; Group B
+     "<-" "->" "-<" ">-" "<--" "-->" "<<-" "->>" "-<<" ">>-" "<-<" ">->"
+     "<-|" "|->" "-|" "|-" "||-" "<!--" "<#--" "<=" "=>" ">=" "<==" "==>"
+     "<<=" "=>>" "=<<" ">>=" "<=<" ">=>" "<=|" "|=>" "<=>" "<==>" "||="
+     "|=" "//=" "/="
+     ; Group C
+     "<<" ">>" "<<<" ">>>" "<>" "<$" "$>" "<$>" "<+" "+>" "<+>" "<:" ":<"
+     "<:<" ">:" ":>" "<~" "~>" "<~>" "<<~" "<~~" "~~>" "~~" "<|" "|>"
+     "<|>" "<||" "||>" "<|||" "|||>" "</" "/>" "</>" "<*" "*>" "<*>" ":?>"
+     ; Group D
+     "#(" "#{" "#[" "]#" "#!" "#?" "#=" "#_" "#_(" "##" "###" "####"
+     ; Group E
+     "[|" "|]" "[<" ">]" "{!!" "!!}" "{|" "|}" "{{" "}}" "{{--" "--}}"
+     "{!--" "//" "///" "!!"
+     ; Group F
+     "www" "@_" "&&" "&&&" "&=" "~@" "++" "+++" "/\\" "\\/" "_|_" "||"
+     ; Group G
+     "=:" "=:=" "=!=" "==" "===" "=/=" "=~" "~-" "^=" "__" "!=" "!==" "-~"
+     "--" "---"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
+
+(use-package timu-macos-theme)
 
 (setq inhibit-startup-screen t)
 (setq latex-preview-pane-use-frame nil) ; Optional: use same frame
-(load-theme 'nano-dark t)
+
+;(load-theme 'nano-dark t)
+(load-theme 'timu-macos t)
+(customize-set-variable 'timu-macos-scale-org-document-title t)
+(customize-set-variable 'timu-macos-scale-org-document-info t)
+(customize-set-variable 'timu-macos-scale-org-level-1 t)
+(customize-set-variable 'timu-macos-scale-org-level-2 t)
+(customize-set-variable 'timu-macos-scale-org-level-3 t)
+(customize-set-variable 'timu-macos-org-intense-colors t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
