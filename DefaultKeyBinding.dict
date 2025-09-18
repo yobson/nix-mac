@@ -72,7 +72,7 @@
     "m" = {
       "e" = {
         "g" = {
-          "a" = ("insertText:", "ψ");
+          "a" = ("insertText:", "ω");
         };
       };
       "i" = {
@@ -572,7 +572,7 @@
     "1" = ("insertText:", "₁");
     "0" = ("insertText:", "₀");
   };
-  "^" = {
+  "\\^" = {
     "a" = ("insertText:", "ᵃ");
     "b" = ("insertText:", "ᵇ");
     "c" = ("insertText:", "ᶜ");

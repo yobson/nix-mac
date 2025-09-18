@@ -9,7 +9,7 @@
   home.packages = [
     (pkgs.writeShellScriptBin "nix-rebuild" ''
        sudo darwin-rebuild switch --flake /Users/${username}/.config/nix
-    '')
+       '')
     pkgs.audacity
     pkgs.iterm2
     pkgs.net-news-wire
@@ -104,10 +104,10 @@
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs.overrideAttrs (old: {
+    package = pkgs.emacs-unstable.overrideAttrs (old: {
       patches =
         (old.patches or []
-        ++ [
+          ++ [
             (pkgs.fetchpatch {
               url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/refs/heads/master/patches/emacs-28/fix-window-role.patch";
               sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
@@ -123,13 +123,15 @@
       (builtins.readFile ./emacs/markdown-conf.el)
       (builtins.readFile ./emacs/maths-blocks.el)
       (builtins.readFile ./emacs/org-conf.el)
-      (builtins.readFile ./dotfiles/emacs)
+      (builtins.readFile ./emacs/config.el)
       ''
       (setq agda2-program "${pkgs.agda}/bin/agda")
-      
+
       (load-file
        (let ((coding-system-for-read 'utf-8))
          (shell-command-to-string "${pkgs.agda}/bin/agda-mode locate")))
+
+      (add-hook 'agda2-mode #'evil-mode)
       ''
       # (builtins.readFile ./emacs/org-agda-mode.el)
     ];
@@ -149,9 +151,8 @@
         mixed-pitch
         polymode
         nix-mode
-        nano-theme
-        timu-macos-theme
         ligature
+        monokai-theme
       ];
   };
 
@@ -159,10 +160,6 @@
     "nvim/lua/config" = {
       recursive = true;
       source = ./nvim-lua;
-    };
-    "emacs" = {
-      recursive = true;
-      source = ./emacs;
     };
     "dictionaries" = {
       recursive = true;
@@ -177,7 +174,6 @@
   home.file = {
     ".latexmkrc".source = ./dotfiles/latexmkrc;
     ".ghci".source = ./dotfiles/ghci;
-    ".emacs".source = ./dotfiles/emacs;
 
     "Library/KeyBindings/DefaultKeyBindingNix.dict" = {
       source = ./DefaultKeyBinding.dict;

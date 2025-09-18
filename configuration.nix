@@ -1,5 +1,12 @@
 { pkgs, config, homedir, user, ... }: 
 {
+  nixpkgs.overlays = [
+    (import (builtins.fetchGit {
+      url = "https://github.com/nix-community/emacs-overlay.git";
+      ref = "master";
+      rev = "b4ffd36bc464accccc8868d7ec498eeb21c6d272";
+    }))
+  ];
 
   imports = [./windows.nix];
   nixpkgs.config.allowUnfree = true;
@@ -8,13 +15,13 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs;
     let tex = (pkgs.texlive.combine {
-        inherit (pkgs.texlive) scheme-basic
-        dvisvgm dvipng # for preview and export as html
-        wrapfig amsmath ulem hyperref capt-of
-        fontspec bbold bboldx bbold-type1 esint
-        metafont collection-fontsextra collection-fontsrecommended
-        ec cm-super parskip;
-      });
+      inherit (pkgs.texlive) scheme-basic
+      dvisvgm dvipng # for preview and export as html
+      wrapfig amsmath ulem hyperref capt-of
+      fontspec bbold bboldx bbold-type1 esint
+      metafont collection-fontsextra collection-fontsrecommended
+      ec cm-super parskip;
+    });
     in [ mkalias
       gnupg
       quilt
@@ -98,8 +105,8 @@
 
   programs.bash.enable = true;
   environment.shells = with pkgs; [ bashInteractive ];
-  
-  
+
+
 
   system.primaryUser = user;
   users.users.${user} = {

@@ -42,10 +42,15 @@
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 
+; (require 'tree-sitter)
+; (require 'tree-sitter-langs)
 
 (use-package haskell-mode)
 (use-package nix-mode
   :mode "\\.nix\\'")
+
+; (add-hook 'haskell-mode-hook #'tree-sitter-mode)
+; (add-hook 'nix-mode-hook #'tree-sitter-mode)
 
 (use-package eglot
   :ensure t
@@ -93,19 +98,10 @@
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
 
-(use-package timu-macos-theme)
-
 (setq inhibit-startup-screen t)
 (setq latex-preview-pane-use-frame nil) ; Optional: use same frame
 
-;(load-theme 'nano-dark t)
-(load-theme 'timu-macos t)
-(customize-set-variable 'timu-macos-scale-org-document-title t)
-(customize-set-variable 'timu-macos-scale-org-document-info t)
-(customize-set-variable 'timu-macos-scale-org-level-1 t)
-(customize-set-variable 'timu-macos-scale-org-level-2 t)
-(customize-set-variable 'timu-macos-scale-org-level-3 t)
-(customize-set-variable 'timu-macos-org-intense-colors t)
+(load-theme 'monokai t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -128,10 +124,18 @@
 
 ;; Set default fixed-pitch font globally
 (set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 150)  ;; Replace with your preferred fixed-pitch font
-(set-fontset-font t 'unicode "JuliaMono" nil 'prepend)
+(set-fontset-font t 'unicode "JuliaMono Nerd Font Mono" nil 'prepend)
 
 (prefer-coding-system 'utf-8)
 
 (use-package direnv
  :config
  (direnv-mode))
+
+
+;; Enable basic mouse support in terminal
+(xterm-mouse-mode 1)
+
+;; Make mouse scrolling work
+(global-set-key [mouse-4] (lambda () (interactive) (scroll-down 1)))
+(global-set-key [mouse-5] (lambda () (interactive) (scroll-up 1)))
