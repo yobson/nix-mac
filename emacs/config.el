@@ -136,6 +136,4 @@
 ;; Enable basic mouse support in terminal
 (xterm-mouse-mode 1)
 
-;; Make mouse scrolling work
-(global-set-key [mouse-4] (lambda () (interactive) (scroll-down 1)))
-(global-set-key [mouse-5] (lambda () (interactive) (scroll-up 1)))
+(scroll-bar-mode -1)

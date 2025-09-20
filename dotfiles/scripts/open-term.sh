@@ -7,5 +7,5 @@ if [ "$is_running" = "true" ]; then
     osascript -e 'tell application "iTerm2" to create window with default profile'
 else
     # iTerm2 is not running, launch it
-    open -a iTerm2
+    open -a "@iTerm2@"
 fi

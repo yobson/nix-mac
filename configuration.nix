@@ -67,7 +67,7 @@
       show-process-indicators = true;
       persistent-apps = [
         "/System/Cryptexes/App/System/Applications/Safari.app"
-        "/System/Applications/Launchpad.app"
+        "/System/Applications/Apps.app"
         "/Applications/reMarkable.app"
         "/Applications/Notion.app"
         "${pkgs.iterm2}/Applications/iTerm2"
