@@ -11,7 +11,7 @@ let
     f = (attrs: lib.attrsets.foldlAttrs g {} attrs);
     expand = key: conf: toString key (f conf);
     g = acc: name: v: if (builtins.stringLength name == 1)
-                then let nn = clean name; in { ${nn} = v; }
+                then let nn = clean name; in lib.attrsets.recursiveUpdate acc { "${nn}" = v; }
                 else let
                   h = clean (builtins.substring 0 1 name);
                   t = builtins.substring 1 (builtins.stringLength name - 1) name;
@@ -63,3 +63,5 @@ in {
     };
   };
 }
+
+
