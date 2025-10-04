@@ -19,6 +19,7 @@
     pkgs.unnaturalscrollwheels
     pkgs.ispell
     pkgs.hunspell
+    pkgs.vlc-bin
     (pkgs.agda.withPackages (p: [ p.standard-library ]))
   ];
 
@@ -435,6 +436,7 @@
       lf = "⊥";
 
       and = "∧";
+      assign = "≔";
       circ = "◯";
       Circ = "●";
       comp = "∘";
@@ -471,7 +473,7 @@
       "<<" = "⟨";
       "<=" = "≤";
       ">=" = "≥";
-      ":=" = "≔";
+      ":" = "∶";
       "|->" = "↦";
       "=" = "＝";
       "~-" = "≃";
