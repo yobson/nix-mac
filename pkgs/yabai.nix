@@ -18,8 +18,8 @@ in
     src = pkgs.fetchFromGitHub {
       owner = "koekeishiya";
       repo = "yabai";
-      rev = "ff42ceadc92dfc50df63b73e3e1384b8b4059864";
-      sha256 = "sha256-DTwRQRiEJUBAp97XiSy4skZuNkVpE2YMXRazlODXf2A=";
+      rev = "9868ae3fc5348d0fcb54ce71fbd6dd39c87cb61d";
+      sha256 = "sha256-DTwRQRiEJUBAp97XiSy4skZuNkVpE2YMXRazlODXf2B=";
     };
     nativeBuildInputs = with pkgs; [
       xxd

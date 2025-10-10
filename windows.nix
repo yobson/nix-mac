@@ -1,13 +1,17 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, ... }: 
+  let
+    headYabai = (import ./pkgs/yabai.nix) {inherit pkgs lib; };
+  in
+{
   services.skhd = {
     enable = true;
     skhdConfig = builtins.readFile ./dotfiles/skhdrc.conf;
   };
-
+  
   services.yabai = {
     enable = true;
     enableScriptingAddition = true;
-    package = pkgs.callPackage ./pkgs/yabai.nix {};
+    package = headYabai;
     config = {
       mouse_follows_focus          = "off";
       focus_follows_mouse          = "autoraise";

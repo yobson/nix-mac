@@ -20,6 +20,7 @@
     pkgs.ispell
     pkgs.hunspell
     pkgs.vlc-bin
+    pkgs.iina
     (pkgs.agda.withPackages (p: [ p.standard-library ]))
   ];
 
