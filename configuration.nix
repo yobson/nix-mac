@@ -8,7 +8,7 @@
     }))
   ];
 
-  imports = [./windows.nix];
+  imports = [./modules/windows.nix];
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search by name, run:
@@ -89,7 +89,7 @@
     };
     loginwindow.GuestEnabled = false;
     NSGlobalDomain.AppleICUForce24HourTime = true;
-    NSGlobalDomain._HIHideMenuBar = true;
+    NSGlobalDomain._HIHideMenuBar = false;
     NSGlobalDomain.NSWindowShouldDragOnGesture = true;
   };
 

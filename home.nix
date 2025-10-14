@@ -1,7 +1,10 @@
 { config, pkgs, username, ... }:
 
 {
-  imports = [./modules/macCompose.nix ];
+  imports = [ ./libs/macCompose.nix
+              ./modules/emacs/emacs.nix
+              ./modules/vim/vim.nix
+            ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = username;
@@ -21,6 +24,7 @@
     pkgs.hunspell
     pkgs.vlc-bin
     pkgs.iina
+    pkgs.musescore
     (pkgs.agda.withPackages (p: [ p.standard-library ]))
   ];
 
@@ -32,6 +36,7 @@
       export PLAN9=${pkgs.plan9port}/plan9
       export PATH=$PATH:${pkgs.plan9port}/plan9/bin
       export LANG=en_GB.UTF-8
+      export EDITOR=vim
     '';
   };
 
@@ -75,98 +80,13 @@
     ];
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      vimtex
-      nvim-treesitter.withAllGrammars
-      lualine-nvim
-      tabline-nvim
-      nvim-cmp
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      agda-vim
-      melange-nvim
-      nerdtree
-      vim-devicons
-      nvim-lspconfig
-      markdown-preview-nvim
-      # cornelis
-    ];
-    extraLuaConfig = ''
-      require("config")
-    '';
-    extraConfig = builtins.readFile ./dotfiles/vimrc;
-    extraPackages = [ pkgs.cornelis ];
-  };
-
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs-unstable.overrideAttrs (old: {
-      patches =
-        (old.patches or []
-          ++ [
-            (pkgs.fetchpatch {
-              url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/refs/heads/master/patches/emacs-28/fix-window-role.patch";
-              sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
-            })
-            (pkgs.fetchpatch {
-              url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/refs/heads/master/patches/emacs-30/round-undecorated-frame.patch";
-              sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
-            })
-          ]);
-    });
-    extraConfig = builtins.concatStringsSep "\n" [
-      (builtins.readFile ./emacs/latex-conf.el)
-      (builtins.readFile ./emacs/markdown-conf.el)
-      (builtins.readFile ./emacs/maths-blocks.el)
-      (builtins.readFile ./emacs/org-conf.el)
-      (builtins.readFile ./emacs/config.el)
-      ''
-      (setq agda2-program "${pkgs.agda}/bin/agda")
-
-      (load-file
-       (let ((coding-system-for-read 'utf-8))
-         (shell-command-to-string "${pkgs.agda}/bin/agda-mode locate")))
-
-      (add-hook 'agda2-mode #'evil-mode)
-      ''
-      # (builtins.readFile ./emacs/org-agda-mode.el)
-    ];
-
-    extraPackages = epkgs: with epkgs;
-      [ evil
-        evil-visual-mark-mode
-        company
-        haskell-mode
-        eglot
-        direnv
-        org
-        org-bullets
-        org-special-block-extras
-        markdown-mode
-        auctex
-        mixed-pitch
-        polymode
-        nix-mode
-        ligature
-        monokai-theme
-      ];
-  };
+  editors.emacs.enable = true;
+  editors.vim.enable = true;
 
   xdg.configFile = {
-    "nvim/lua/config" = {
-      recursive = true;
-      source = ./nvim-lua;
-    };
     "dictionaries" = {
       recursive = true;
-      source = ./dictionaries;
+      source = ./dotfiles/dictionaries;
     };
     "scripts/open-term.sh" = {
       source = pkgs.replaceVars ./dotfiles/scripts/open-term.sh {
@@ -174,20 +94,15 @@
       };
       executable = true;
     };
+    "scripts/switch.sh" = {
+      source = ./dotfiles/scripts/switch.sh;
+      executable = true;
+    };
   };
 
   home.file = {
     ".latexmkrc".source = ./dotfiles/latexmkrc;
     ".ghci".source = ./dotfiles/ghci;
-
-    #"Library/KeyBindings/DefaultKeyBindingNix.dict" = {
-    #  source = ./DefaultKeyBinding.dict;
-    #  onChange = ''
-    #    rm -f ${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict
-    #    cp ${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBindingNix.dict ${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict
-    #    chmod 764 ${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict
-    #  '';
-    #};
   };
 
   macCompose = {

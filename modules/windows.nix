@@ -1,17 +1,14 @@
 { pkgs, lib, config, ... }: 
-  let
-    headYabai = (import ./pkgs/yabai.nix) {inherit pkgs lib; };
-  in
 {
   services.skhd = {
     enable = true;
-    skhdConfig = builtins.readFile ./dotfiles/skhdrc.conf;
+    skhdConfig = builtins.readFile ../dotfiles/skhdrc.conf;
   };
   
   services.yabai = {
     enable = true;
     enableScriptingAddition = true;
-    package = headYabai;
+    package = (import ../pkgs/yabai.nix { inherit pkgs lib; });
     config = {
       mouse_follows_focus          = "off";
       focus_follows_mouse          = "autoraise";
@@ -35,7 +32,7 @@
       mouse_action2                = "resize";
       mouse_drop_action            = "swap";
       layout                       = "bsp";
-      top_padding                  = 12;
+      top_padding                  = 0;
       bottom_padding               = 12;
       left_padding                 = 12;
       right_padding                = 12;
@@ -54,7 +51,7 @@
   };
 
   services.sketchybar = {
-    enable = true;
+    enable = false;
     config = builtins.concatStringsSep "\n" [
                (builtins.readFile ./sketchy/colors.sh)
                (builtins.readFile ./sketchy/icon_map.sh)

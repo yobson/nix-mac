@@ -14,12 +14,12 @@ let
 in
   pkgs.stdenv.mkDerivation {
     pname = "yabai";
-    version = "HEAD";
+    version = "7.1.16";
     src = pkgs.fetchFromGitHub {
       owner = "koekeishiya";
       repo = "yabai";
       rev = "9868ae3fc5348d0fcb54ce71fbd6dd39c87cb61d";
-      sha256 = "sha256-DTwRQRiEJUBAp97XiSy4skZuNkVpE2YMXRazlODXf2B=";
+      sha256 = "sha256-WXvM0ub4kJ3rKXynTxmr2Mx+LzJOgmm02CcEx2nsy/A=";
     };
     nativeBuildInputs = with pkgs; [
       xxd
