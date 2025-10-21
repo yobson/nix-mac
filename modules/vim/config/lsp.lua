@@ -8,3 +8,11 @@ vim.lsp.config("qmlls", {
 })
 
 vim.lsp.enable({"hls", "qmlls"})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    vim.diagnostic.open_float(nil, { focus = false })
+  end
+})
+
+vim.opt.updatetime = 300
