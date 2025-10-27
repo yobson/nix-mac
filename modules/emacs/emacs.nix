@@ -34,6 +34,7 @@ in {
         (builtins.readFile ./maths-blocks.el)
         (builtins.readFile ./org-conf.el)
         (builtins.readFile ./config.el)
+        (builtins.readFile ./theme-conf.el)        
         ''
       (setq agda2-program "${pkgs.agda}/bin/agda")
 
@@ -63,7 +64,14 @@ in {
           nix-mode
           ligature
           monokai-theme
+          moody
+          material-theme
         ];
+    };
+
+    home.file = {
+      ".emacs.d/early-init.el".source = ./init-early.el;
+      ".emacs.d/emacs.png".source = ./emacs.png;
     };
   };
 }

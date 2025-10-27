@@ -101,7 +101,7 @@
 (setq inhibit-startup-screen t)
 (setq latex-preview-pane-use-frame nil) ; Optional: use same frame
 
-(load-theme 'monokai t)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

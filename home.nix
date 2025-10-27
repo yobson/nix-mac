@@ -25,6 +25,7 @@
     pkgs.vlc-bin
     pkgs.iina
     pkgs.musescore
+    (pkgs.callPackage ./pkgs/gforth.nix {})
     (pkgs.agda.withPackages (p: [ p.standard-library ]))
   ];
 
