@@ -43,6 +43,7 @@ in {
          (shell-command-to-string "${pkgs.agda}/bin/agda-mode locate")))
 
       (add-hook 'agda2-mode #'evil-mode)
+      (tool-bar-mode 0)
         ''
         # (builtins.readFile ./emacs/org-agda-mode.el)
       ];
@@ -65,6 +66,7 @@ in {
           ligature
           monokai-theme
           moody
+          auto-dark
           material-theme
           exec-path-from-shell
         ];
