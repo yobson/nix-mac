@@ -66,6 +66,7 @@ in {
           monokai-theme
           moody
           material-theme
+          exec-path-from-shell
         ];
     };
 

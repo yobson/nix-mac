@@ -69,5 +69,17 @@
           home-manager.darwinModules.home-manager (homeConf "james.hobson")
         ];
       };
+      homeConfigurations."james" = home-manager.lib.homeManagerConfiguration {
+        # System is very important!
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
+        # useGlobalPkgs = true;
+        # useUserPackages = true;
+        # backupFileExtension = "hm-backup";
+        extraSpecialArgs = {
+          username = "james";
+        };
+
+        modules = [ ./home.nix ]; # Defined later
+      };
   };
 }

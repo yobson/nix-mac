@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ config, lib, pkgs, username, ... }:
 
 {
   imports = [ ./libs/macCompose.nix
@@ -8,32 +8,39 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = username;
-  home.homeDirectory = "/Users/${username}";
+  home.homeDirectory = if pkgs.stdenv.isDarwin 
+    then "/Users/${username}"
+    else "/home/${username}";
 
   home.packages = [
-    (pkgs.writeShellScriptBin "nix-rebuild" ''
-       sudo darwin-rebuild switch --flake /Users/${username}/.config/nix
-       '')
     pkgs.audacity
-    pkgs.iterm2
-    pkgs.net-news-wire
-    pkgs.skimpdf
-    pkgs.pinentry_mac
-    pkgs.unnaturalscrollwheels
     pkgs.ispell
     pkgs.hunspell
-    pkgs.vlc-bin
-    pkgs.iina
     pkgs.musescore
     (pkgs.callPackage ./pkgs/gforth.nix {})
     (pkgs.agda.withPackages (p: [ p.standard-library ]))
+  ] ++ lib.optionals (pkgs.stdenv.isDarwin) [
+    (pkgs.writeShellScriptBin "nix-rebuild" ''
+       sudo darwin-rebuild switch --flake /Users/${username}/.config/nix
+       '')
+    pkgs.iterm2
+    pkgs.net-news-wire
+    pkgs.skimpdf
+    pkgs.unnaturalscrollwheels
+    pkgs.iina
+    pkgs.vlc-bin
+  ] ++ lib.optionals (pkgs.stdenv.isLinux) [
+      pkgs.vlc
+      pkgs.racket
+      pkgs.kicad
+      pkgs.firefox
   ];
 
   programs.bash = {
     enable = true;
     initExtra = ''
       source ~/.ghcup/env
-      export PATH=$PATH:/Users/jameshobson/.local/bin
+      export PATH=$PATH:$HOME/.local/bin
       export PLAN9=${pkgs.plan9port}/plan9
       export PATH=$PATH:${pkgs.plan9port}/plan9/bin
       export LANG=en_GB.UTF-8
@@ -41,12 +48,19 @@
     '';
   };
 
-  programs.gpg.enable = true;
+  programs.gpg = {
+    enable = true;
+    settings = {
+      keyserver = "hkps://keyserver.ubuntu.com";
+    };
+  };
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 600;
     maxCacheTtl = 7200;
-    pinentry.package = pkgs.pinentry_mac;
+    pinentry.package = if pkgs.stdenv.isDarwin 
+      then pkgs.pinentry_mac
+      else pkgs.pinentry-tty;
     enableScDaemon = false;
   };
 
@@ -91,7 +105,9 @@
     };
     "scripts/open-term.sh" = {
       source = pkgs.replaceVars ./dotfiles/scripts/open-term.sh {
-        iTerm2 = "${pkgs.iterm2}/Applications/iTerm2.app";
+        iTerm2 = if pkgs.stdenv.isDarwin
+          then "${pkgs.iterm2}/Applications/iTerm2.app"
+          else "";
       };
       executable = true;
     };
