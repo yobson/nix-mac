@@ -60,7 +60,7 @@
     maxCacheTtl = 7200;
     pinentry.package = if pkgs.stdenv.isDarwin 
       then pkgs.pinentry_mac
-      else pkgs.pinentry-tty;
+      else pkgs.pinentry-qt;
     enableScDaemon = false;
   };
 
