@@ -42,10 +42,9 @@ in {
        (let ((coding-system-for-read 'utf-8))
          (shell-command-to-string "${pkgs.agda}/bin/agda-mode locate")))
 
-      (add-hook 'agda2-mode #'evil-mode)
       (tool-bar-mode 0)
         ''
-        # (builtins.readFile ./emacs/org-agda-mode.el)
+        #(builtins.readFile ./org-agda-mode.el)
       ];
 
       extraPackages = epkgs: with epkgs;
@@ -62,6 +61,7 @@ in {
           auctex
           mixed-pitch
           polymode
+          poly-markdown
           nix-mode
           ligature
           monokai-theme

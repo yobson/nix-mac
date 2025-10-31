@@ -13,10 +13,10 @@
 (setq mac-option-modifier 'meta)
 
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns x))
-  :config
-  (exec-path-from-shell-initialize))  
-  
+             :if (memq window-system '(mac ns x))
+             :config
+             (exec-path-from-shell-initialize))  
+
 (setq ispell-program-name "hunspell")
 (setenv
   "DICPATH"
@@ -39,64 +39,64 @@
 ;;   :after evil)
 
 (use-package company
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
+             :config
+             (add-hook 'after-init-hook 'global-company-mode))
 
 ; (require 'tree-sitter)
 ; (require 'tree-sitter-langs)
 
 (use-package haskell-mode)
 (use-package nix-mode
-  :mode "\\.nix\\'")
+             :mode "\\.nix\\'")
 
 ; (add-hook 'haskell-mode-hook #'tree-sitter-mode)
 ; (add-hook 'nix-mode-hook #'tree-sitter-mode)
 
 (use-package eglot
-  :ensure t
-  :config
-  (add-hook 'haskell-mode-hook 'eglot-ensure)
-  :config
-  (setq-default eglot-workspace-configuration
-                '((haskell
-                   (plugin
-                    (stan
-                     (globalOn . :json-false))))))  ;; disable stan
-  :custom
-  (eglot-autoshutdown t)  ;; shutdown language server after closing last file
-  (eglot-confirm-server-initiated-edits nil)  ;; allow edits without confirmation
-  )
+             :ensure t
+             :config
+             (add-hook 'haskell-mode-hook 'eglot-ensure)
+             :config
+             (setq-default eglot-workspace-configuration
+                           '((haskell
+                               (plugin
+                                 (stan
+                                   (globalOn . :json-false))))))  ;; disable stan
+             :custom
+             (eglot-autoshutdown t)  ;; shutdown language server after closing last file
+             (eglot-confirm-server-initiated-edits nil)  ;; allow edits without confirmation
+             )
 
 (use-package ligature
-  :load-path "path-to-ligature-repo"
-  :config
-  (ligature-set-ligatures
-   'prog-mode
-   '(; Group A
-     ".." ".=" "..." "..<" "::" ":::" ":=" "::=" ";;" ";;;" "??" "???"
-     ".?" "?." ":?" "?:" "?=" "**" "***" "/*" "*/" "/**"
-     ; Group B
-     "<-" "->" "-<" ">-" "<--" "-->" "<<-" "->>" "-<<" ">>-" "<-<" ">->"
-     "<-|" "|->" "-|" "|-" "||-" "<!--" "<#--" "<=" "=>" ">=" "<==" "==>"
-     "<<=" "=>>" "=<<" ">>=" "<=<" ">=>" "<=|" "|=>" "<=>" "<==>" "||="
-     "|=" "//=" "/="
-     ; Group C
-     "<<" ">>" "<<<" ">>>" "<>" "<$" "$>" "<$>" "<+" "+>" "<+>" "<:" ":<"
-     "<:<" ">:" ":>" "<~" "~>" "<~>" "<<~" "<~~" "~~>" "~~" "<|" "|>"
-     "<|>" "<||" "||>" "<|||" "|||>" "</" "/>" "</>" "<*" "*>" "<*>" ":?>"
-     ; Group D
-     "#(" "#{" "#[" "]#" "#!" "#?" "#=" "#_" "#_(" "##" "###" "####"
-     ; Group E
-     "[|" "|]" "[<" ">]" "{!!" "!!}" "{|" "|}" "{{" "}}" "{{--" "--}}"
-     "{!--" "//" "///" "!!"
-     ; Group F
-     "www" "@_" "&&" "&&&" "&=" "~@" "++" "+++" "/\\" "\\/" "_|_" "||"
-     ; Group G
-     "=:" "=:=" "=!=" "==" "===" "=/=" "=~" "~-" "^=" "__" "!=" "!==" "-~"
-     "--" "---"))
-  ;; Enables ligature checks globally in all buffers. You can also do it
-  ;; per mode with `ligature-mode'.
-  (global-ligature-mode t))
+             :load-path "path-to-ligature-repo"
+             :config
+             (ligature-set-ligatures
+               'prog-mode
+               '(; Group A
+                 ".." ".=" "..." "..<" "::" ":::" ":=" "::=" ";;" ";;;" "??" "???"
+                 ".?" "?." ":?" "?:" "?=" "**" "***" "/*" "*/" "/**"
+                 ; Group B
+                 "<-" "->" "-<" ">-" "<--" "-->" "<<-" "->>" "-<<" ">>-" "<-<" ">->"
+                 "<-|" "|->" "-|" "|-" "||-" "<!--" "<#--" "<=" "=>" ">=" "<==" "==>"
+                 "<<=" "=>>" "=<<" ">>=" "<=<" ">=>" "<=|" "|=>" "<=>" "<==>" "||="
+                 "|=" "//=" "/="
+                 ; Group C
+                 "<<" ">>" "<<<" ">>>" "<>" "<$" "$>" "<$>" "<+" "+>" "<+>" "<:" ":<"
+                 "<:<" ">:" ":>" "<~" "~>" "<~>" "<<~" "<~~" "~~>" "~~" "<|" "|>"
+                 "<|>" "<||" "||>" "<|||" "|||>" "</" "/>" "</>" "<*" "*>" "<*>" ":?>"
+                 ; Group D
+                 "#(" "#{" "#[" "]#" "#!" "#?" "#=" "#_" "#_(" "##" "###" "####"
+                 ; Group E
+                 "[|" "|]" "[<" ">]" "{!!" "!!}" "{|" "|}" "{{" "}}" "{{--" "--}}"
+                 "{!--" "//" "///" "!!"
+                 ; Group F
+                 "www" "@_" "&&" "&&&" "&=" "~@" "++" "+++" "/\\" "\\/" "_|_" "||"
+                 ; Group G
+                 "=:" "=:=" "=!=" "==" "===" "=/=" "=~" "~-" "^=" "__" "!=" "!==" "-~"
+                 "--" "---"))
+             ;; Enables ligature checks globally in all buffers. You can also do it
+             ;; per mode with `ligature-mode'.
+             (global-ligature-mode t))
 
 (setq inhibit-startup-screen t)
 (setq latex-preview-pane-use-frame nil) ; Optional: use same frame
@@ -104,18 +104,18 @@
 
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(eglot-confirm-server-edits nil nil nil "Customized with use-package eglot")
- '(package-selected-packages nil))
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  '(eglot-confirm-server-edits nil nil nil "Customized with use-package eglot")
+  '(package-selected-packages nil))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Berkeley Mono" :foundry "nil" :slant normal :weight regular :height 150 :width normal)))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  '(default ((t (:family "Berkeley Mono" :foundry "nil" :slant normal :weight regular :height 150 :width normal)))))
 
 (transient-mark-mode 1)
 
@@ -129,11 +129,21 @@
 (prefer-coding-system 'utf-8)
 
 (use-package direnv
- :config
- (direnv-mode))
+             :config
+             (direnv-mode))
 
 
 ;; Enable basic mouse support in terminal
 (xterm-mouse-mode 1)
 
 (scroll-bar-mode -1)
+
+;(use-package agda2-mode
+;  :defer t
+;  :mode ("\\.lagda.md\\'" . agda2-mode)
+;  :config
+;  (setq agda2-program-name (executable-find "agda"))
+;  (setq agda2-highlight-face-groups '(:constrs :types :functions :bound :keywords)))
+
+
+
