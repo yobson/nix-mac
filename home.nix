@@ -34,6 +34,13 @@
       pkgs.racket
       pkgs.kicad
       pkgs.firefox
+      pkgs.transmission-remote-gtk
+      pkgs.curl
+      pkgs.gcc
+      pkgs.gmp
+      pkgs.gnumake
+      pkgs.ncurses
+      pkgs.pkg-config
   ];
 
   programs.bash = {
