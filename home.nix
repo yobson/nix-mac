@@ -30,17 +30,17 @@
     pkgs.iina
     pkgs.vlc-bin
   ] ++ lib.optionals (pkgs.stdenv.isLinux) [
-      pkgs.vlc
+			# pkgs.vlc
       pkgs.racket
-      pkgs.kicad
-      pkgs.firefox
-      pkgs.transmission-remote-gtk
-      pkgs.curl
-      pkgs.gcc
-      pkgs.gmp
-      pkgs.gnumake
-      pkgs.ncurses
-      pkgs.pkg-config
+			#  pkgs.kicad
+			#   pkgs.firefox
+   			#   pkgs.transmission-remote-gtk
+   			#   pkgs.curl
+   			#   pkgs.gcc
+   			#   pkgs.gmp
+   			#   pkgs.gnumake
+   			#   pkgs.ncurses
+   			#   pkgs.pkg-config
   ];
 
   programs.bash = {

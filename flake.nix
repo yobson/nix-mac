@@ -13,25 +13,25 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util }:
-  let homeConf = user: {
-        home-manager.extraSpecialArgs = {
-          username = user;
-        };
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.${user} = ./home.nix;
-        home-manager.backupFileExtension = "hm-backup";
-        home-manager.sharedModules = [
-          mac-app-util.homeManagerModules.default
-        ];
-
-        # Optionally, use home-manager.extraSpecialArgs to pass
-        # arguments to home.nix
+    let homeConf = user: {
+      home-manager.extraSpecialArgs = {
+        username = user;
       };
-  in
-  {
-    # Build darwin flake using:
-   darwinConfigurations."James-MacBook-Personal" = nix-darwin.lib.darwinSystem {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.${user} = ./home.nix;
+      home-manager.backupFileExtension = "hm-backup";
+      home-manager.sharedModules = [
+        mac-app-util.homeManagerModules.default
+      ];
+
+      # Optionally, use home-manager.extraSpecialArgs to pass
+      # arguments to home.nix
+    };
+    in
+      {
+      # Build darwin flake using:
+      darwinConfigurations."James-MacBook-Personal" = nix-darwin.lib.darwinSystem {
         specialArgs = {
           user = "jameshobson";
           homedir = "/Users/jameshobson";
@@ -50,7 +50,7 @@
           home-manager.darwinModules.home-manager (homeConf "jameshobson")
         ];
       };
-    darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
         specialArgs = {
           user = "james.hobson";
           homedir = "/Users/james.hobson";
@@ -71,15 +71,14 @@
       };
       homeConfigurations."james" = home-manager.lib.homeManagerConfiguration {
         # System is very important!
-        pkgs = import nixpkgs { system = "x86_64-linux"; };
+        pkgs = import nixpkgs { system = "arm64-linux"; };
         # useGlobalPkgs = true;
         # useUserPackages = true;
         # backupFileExtension = "hm-backup";
         extraSpecialArgs = {
           username = "james";
         };
-
         modules = [ ./home.nix ]; # Defined later
       };
-  };
+    };
 }
