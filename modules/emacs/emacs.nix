@@ -36,11 +36,12 @@ in {
         (builtins.readFile ./config.el)
         (builtins.readFile ./theme-conf.el)        
         ''
-      (setq agda2-program "${pkgs.agda}/bin/agda")
+      ; (setq agda2-program "${pkgs.agda}/bin/agda")
 
       (load-file
        (let ((coding-system-for-read 'utf-8))
-         (shell-command-to-string "${pkgs.agda}/bin/agda-mode locate")))
+        ; (shell-command-to-string "${pkgs.agda}/bin/agda-mode locate")))
+        (shell-command-to-string "agda-mode locate")))
 
       (tool-bar-mode 0)
         ''

@@ -138,12 +138,5 @@
 
 (scroll-bar-mode -1)
 
-;(use-package agda2-mode
-;  :defer t
-;  :mode ("\\.lagda.md\\'" . agda2-mode)
-;  :config
-;  (setq agda2-program-name (executable-find "agda"))
-;  (setq agda2-highlight-face-groups '(:constrs :types :functions :bound :keywords)))
-
 
 
