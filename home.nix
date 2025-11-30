@@ -4,6 +4,7 @@
   imports = [ ./modules/emacs/emacs.nix
               ./modules/vim/vim.nix
               ./modules/keyboard.nix
+              ./modules/xmonad.nix
             ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -104,6 +105,8 @@
 
   editors.emacs.enable = true;
   editors.vim.enable = true;
+
+  x11.xmonad.enable = pkgs.stdenv.isLinux;
 
   xdg.configFile = {
     "dictionaries" = {
