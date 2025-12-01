@@ -1,10 +1,10 @@
 (setenv "LANG" "en_GB.UTF-8")
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; 
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
