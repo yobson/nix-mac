@@ -3,13 +3,7 @@ with lib;
 
 let
   cfg = config.x11.xmonad;
-  libDir = ./xmonad/src;  # directory containing files
-  files = builtins.readDir libDir;
 
-  # readDir gives { file1 = "regular"; file2 = "regular"; ... }
-  # so turn them into an attrset mapping names to paths
-  libFiles =
-    builtins.mapAttrs (name: _type: "${libDir}/${name}") files;
 in {
   options.x11.xmonad = {
     enable = mkEnableOption "Enable XMonad Config";
@@ -40,6 +34,8 @@ in {
         extraPackages = hp: [
           hp.dbus
           hp.monad-logger
+          hp.stm
+          hp.typed-process
           hp.bytestring
         ];
         config = pkgs.replaceVars ./xmonad/xmonad.hs {
@@ -48,7 +44,12 @@ in {
           feh       = "${pkgs.feh}/bin/feh";
           wallpaper = cfg.wallpaper;
         };
-        libFiles = libFiles;
+        libFiles = {
+          "Rofi.hs" = pkgs.replaceVars ./xmonad/src/Rofi.hs {
+            rofi      = "${pkgs.rofi}/bin/rofi";
+          };
+          "Monitor.hs" = ./xmonad/src/Monitor.hs;
+        };
       };
     };
 
@@ -59,35 +60,35 @@ in {
     };
 
     services.dunst = {
-    enable = true;
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-      size = "16x16";
-    };
-    settings = {
-      global = {
-        monitor = 0;
-        geometry = "600x50-50+65";
-        shrink = "yes";
-        transparency = 10;
-        padding = 16;
-        horizontal_padding = 16;
-        font = "JetBrainsMono Nerd Font 10";
-        line_height = 4;
-        format = ''<b>%s</b>\n%b'';
+      enable = true;
+      iconTheme = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+        size = "16x16";
+      };
+      settings = {
+        global = {
+          monitor = 0;
+          geometry = "600x50-50+65";
+          shrink = "yes";
+          transparency = 10;
+          padding = 16;
+          horizontal_padding = 16;
+          font = "JetBrainsMono Nerd Font 10";
+          line_height = 4;
+          format = ''<b>%s</b>\n%b'';
+        };
       };
     };
-  };
 
     services.polybar = {
-    enable = cfg.enable;
-    package = pkgs.polybar;
-    config = cfg.polybar-config;
-    script = ''
+      enable = cfg.enable;
+      package = pkgs.polybar;
+      config = cfg.polybar-config;
+      script = ''
       polybar top &
-    '';
-  };
+      '';
+    };
 
     home.packages = optionals cfg.enable [
       pkgs.wezterm

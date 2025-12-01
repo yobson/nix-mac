@@ -1,3 +1,4 @@
+{-# LANGUAGE LambdaCase #-}
 import XMonad
 import System.Exit (exitSuccess)
 import XMonad.Util.EZConfig
@@ -14,6 +15,9 @@ import Data.Kind
 
 import qualified DBus as D
 import qualified DBus.Client as D
+
+import Rofi
+import Monitor
 
 main :: IO ()
 main = do
@@ -32,6 +36,7 @@ keyBindings =
   , ("M-<Return>", spawn "@wezterm@")
   , ("M-S-q"     , kill)
   , ("C-M-q"     , io exitSuccess)
+  , ("C-M-r"     , selectResolution)
   ]
 
 startUp :: X ()
@@ -89,3 +94,12 @@ yellow    = "#fabd2f"
 blue      = "#83a598"
 purple    = "#d3869b"
 aqua      = "#8ec07c"
+
+selectResolution :: X ()
+selectResolution = liftIO $ do
+  mon <- getMonitors >>= rofi "Which Monitor?"
+  case mon of
+    Nothing -> return ()
+    Just mon -> do
+      res <- getResolutionOptions mon >>= rofi "Resolution"
+      maybe (return ()) (setResolution mon) res
