@@ -1,9 +1,10 @@
-{...}:
+{pkgs, ...}:
 {
   imports = [ ../libs/macCompose.nix ];
 
   macCompose = {
     enable = true;
+    composeKey = if pkgs.stdenv.isDarwin then "§" else "ralt";
     mapping = {
       ba = "𝕒";
       bb = "𝕓";

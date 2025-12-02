@@ -56,6 +56,8 @@ let
       else if c == "(" then "parenleft"
       else if c == ")" then "parenright"
       else if c == "~" then "asciitilde"
+      else if c == "^" then "asciicircum"
+      else if c == "|" then "bar"
       else if c == "`" then "grave"
       else "${c}";
 
@@ -106,6 +108,15 @@ in {
     } else {
       ".XCompose" = {
         text = expand cfg.composeKey cfg.mapping;
+      };
+      ".xprofile" = {
+        text =
+        ''
+          setxkbmap -option compose:${cfg.composeKey}
+        '';
+      onChange = ''
+          setxkbmap -option compose:${cfg.composeKey}
+        '';
       };
     };
   };
