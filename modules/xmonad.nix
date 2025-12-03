@@ -38,17 +38,17 @@ in {
           hp.typed-process
           hp.bytestring
         ];
-        config = pkgs.replaceVars ./xmonad/xmonad.hs {
+        config = pkgs.replaceVars ./xmonad/app/Main.hs {
           wezterm   = "${pkgs.wezterm}/bin/wezterm";
           rofi      = "${pkgs.rofi}/bin/rofi";
           feh       = "${pkgs.feh}/bin/feh";
           wallpaper = cfg.wallpaper;
         };
         libFiles = {
-          "Rofi.hs" = pkgs.replaceVars ./xmonad/src/Rofi.hs {
+          "Rofi.hs" = pkgs.replaceVars ./xmonad/app/Rofi.hs {
             rofi      = "${pkgs.rofi}/bin/rofi";
           };
-          "Monitor.hs" = ./xmonad/src/Monitor.hs;
+          "Monitor.hs" = ./xmonad/app/Monitor.hs;
         };
       };
     };
