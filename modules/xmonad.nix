@@ -60,7 +60,7 @@ in {
     };
 
     services.dunst = {
-      enable = true;
+      enable = cfg.enable;
       iconTheme = {
         name = "Adwaita";
         package = pkgs.adwaita-icon-theme;
