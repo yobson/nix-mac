@@ -21,7 +21,7 @@ import QS
 main :: IO ()
 main = do
   xmonad $ ewmh $ docks $ def
-    { terminal = "@wezterm@"
+    { terminal = "@terminal@"
     , startupHook = startUp
     , layoutHook  = layout
     , logHook     = polybar
@@ -31,7 +31,7 @@ main = do
 keyBindings :: [(String, X ())]
 keyBindings = 
   [ ("M-<Space>" , spawn "@rofi@ -show drun")
-  , ("M-<Return>", spawn "@wezterm@")
+  , ("M-<Return>", spawn "@terminal@")
   , ("M-S-q"     , kill)
   , ("C-M-q"     , io exitSuccess)
   , ("C-M-r"     , selectResolution)

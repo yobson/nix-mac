@@ -21,6 +21,10 @@ in {
         xmonad-log = "${pkgs.xmonad-log}/bin/xmonad-log";
       };
     };
+    terminal = mkOption {
+      type = types.str;
+      default = "${pkgs.wezterm}/bin/wezterm";
+    };
   };
   config = {
     xsession = {
@@ -38,7 +42,7 @@ in {
           hp.bytestring
         ];
         config = pkgs.replaceVars ./xmonad/app/Main.hs {
-          wezterm    = "${pkgs.wezterm}/bin/wezterm";
+          terminal   = cfg.terminal;
           rofi       = "${pkgs.rofi}/bin/rofi";
           feh        = "${pkgs.feh}/bin/feh";
           wallpaper  = cfg.wallpaper;
@@ -98,11 +102,10 @@ in {
     };
 
     home.packages = optionals cfg.enable [
-      pkgs.wezterm
       pkgs.feh
       pkgs.gnome-backgrounds
       pkgs.xmonad-log
       pkgs.quickshell
-    ];
+    ] ++ optionals (cfg.enable && cfg.terminal == "${pkgs.wezterm}/bin/wezterm") [ wezterm ];
   };
 }

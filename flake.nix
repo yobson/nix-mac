@@ -16,6 +16,7 @@
   let homeConf = user: {
         home-manager.extraSpecialArgs = {
           username = user;
+          lite = false;
         };
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
@@ -69,17 +70,23 @@
           home-manager.darwinModules.home-manager (homeConf "james.hobson")
         ];
       };
-      homeConfigurations."james" = home-manager.lib.homeManagerConfiguration {
-        # System is very important!
-        pkgs = import nixpkgs { system = "x86_64-linux"; };
-        # useGlobalPkgs = true;
-        # useUserPackages = true;
-        # backupFileExtension = "hm-backup";
-        extraSpecialArgs = {
-          username = "james";
+      homeConfigurations = {
+        "james" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          extraSpecialArgs = {
+            username = "james";
+            lite = false;
+          };
+          modules = [ ./home.nix ]; # Defined later
         };
-
-        modules = [ ./home.nix ]; # Defined later
+        "rpi5-james" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "aarch64-linux"; };
+          extraSpecialArgs = {
+            username = "james";
+            lite = true;
+          };
+          modules = [ ./home.nix ]; # Defined later
+        };
       };
   };
 }

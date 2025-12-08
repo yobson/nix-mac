@@ -1,8 +1,8 @@
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, username, lite, ... }:
 
 {
-  imports = [ ./modules/emacs/emacs.nix
-              ./modules/vim/vim.nix
+  imports = [ ./modules/emacs.nix
+              ./modules/vim.nix
               ./modules/keyboard.nix
               ./modules/xmonad.nix
             ];
@@ -14,12 +14,11 @@
     else "/home/${username}";
 
   home.packages = [
-    pkgs.audacity
-    pkgs.ispell
-    pkgs.hunspell
-    pkgs.musescore
     (pkgs.callPackage ./pkgs/gforth.nix {})
     (pkgs.agda.withPackages (p: [ p.standard-library ]))
+  ] ++ lib.optionals (!lite) [
+    pkgs.audacity
+    pkgs.musescore
   ] ++ lib.optionals (pkgs.stdenv.isDarwin) [
     (pkgs.writeShellScriptBin "nix-rebuild" ''
        sudo darwin-rebuild switch --flake /Users/${username}/.config/nix
@@ -31,17 +30,23 @@
     pkgs.iina
     pkgs.vlc-bin
   ] ++ lib.optionals (pkgs.stdenv.isLinux) [
-      pkgs.vlc
+    (pkgs.writeShellScriptBin "nix-rebuild" ''
+       home-manager switch --flake /home/${username}/.config/home-manager#$(hostname)
+       '')
       pkgs.racket
-      pkgs.kicad
       pkgs.firefox
-      pkgs.transmission-remote-gtk
       pkgs.curl
       pkgs.gcc
       pkgs.gmp
       pkgs.gnumake
       pkgs.ncurses
       pkgs.pkg-config
+  ] ++ lib.optionals (pkgs.stdenv.isLinux && !lite) [
+      pkgs.vlc
+      pkgs.kicad
+      pkgs.transmission-remote-gtk
+  ] ++ lib.optionals (lite) [
+      pkgs.st
   ];
 
   programs.bash = {
@@ -78,8 +83,10 @@
       "*.vscode"
       "dist-newstyle"
     ];
-    userEmail = "james@hobson.space";
-    userName = "James Hobson";
+    settings.user = {
+      userEmail = "james@hobson.space";
+      userName = "James Hobson";
+    };
     signing.signByDefault = true;
     signing.key = "D5E8 7B99 20A0 F392 857E  6212 27B6 62CE FCE9 BE00";
   };
@@ -107,12 +114,11 @@
   editors.vim.enable = true;
 
   x11.xmonad.enable = pkgs.stdenv.isLinux;
+  x11.xmonad.terminal = lib.optionals lite
+    "${pkgs.st}/bin/st";
 
+  # Move to yabai config
   xdg.configFile = {
-    "dictionaries" = {
-      recursive = true;
-      source = ./dotfiles/dictionaries;
-    };
     "scripts/open-term.sh" = {
       source = pkgs.replaceVars ./dotfiles/scripts/open-term.sh {
         iTerm2 = if pkgs.stdenv.isDarwin
