@@ -32,26 +32,33 @@ in {
         enable = cfg.enable;
         enableContribAndExtras = true;
         extraPackages = hp: [
-          hp.dbus
           hp.monad-logger
           hp.stm
           hp.typed-process
           hp.bytestring
         ];
         config = pkgs.replaceVars ./xmonad/app/Main.hs {
-          wezterm   = "${pkgs.wezterm}/bin/wezterm";
-          rofi      = "${pkgs.rofi}/bin/rofi";
-          feh       = "${pkgs.feh}/bin/feh";
-          wallpaper = cfg.wallpaper;
+          wezterm    = "${pkgs.wezterm}/bin/wezterm";
+          rofi       = "${pkgs.rofi}/bin/rofi";
+          feh        = "${pkgs.feh}/bin/feh";
+          wallpaper  = cfg.wallpaper;
         };
         libFiles = {
           "Rofi.hs" = pkgs.replaceVars ./xmonad/app/Rofi.hs {
             rofi      = "${pkgs.rofi}/bin/rofi";
           };
+          "QS.hs" = pkgs.replaceVars ./xmonad/app/QS.hs {
+            quickshell = "${pkgs.quickshell}/bin/quickshell";
+          };
           "Monitor.hs" = ./xmonad/app/Monitor.hs;
         };
       };
     };
+
+ #    xdg.configFile."quickshell" = {
+ #      recursive = true;
+ #      source = ./xmonad/quickshell;
+ #    };
 
     programs.rofi = {
       enable   = cfg.enable;
@@ -82,7 +89,7 @@ in {
     };
 
     services.polybar = {
-      enable = cfg.enable;
+      enable = false; # cfg.enable;
       package = pkgs.polybar;
       config = cfg.polybar-config;
       script = ''
@@ -95,6 +102,7 @@ in {
       pkgs.feh
       pkgs.gnome-backgrounds
       pkgs.xmonad-log
+      pkgs.quickshell
     ];
   };
 }
