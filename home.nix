@@ -116,9 +116,14 @@ in
   editors.emacs.enable = largeApps;
   editors.vim.enable = true;
 
-  x11.xmonad.enable = pkgs.stdenv.isLinux && gui;
-  x11.xmonad.terminal = lib.optionals (!largeApps)
-    "${pkgs.st}/bin/st";
+  x11.xmonad = if (pkgs.stdenv.isLinux && gui && largeApps) 
+  then {
+    enable = true;
+  } else if (pkgs.stdenv.isLinux && gui && largeApps)
+  then {
+      enable = true;
+      terminal = "${pkgs.st}/bin/st";
+  } else {};
 
   # Move to yabai config
   xdg.configFile = {

@@ -106,6 +106,6 @@ in {
       pkgs.gnome-backgrounds
       pkgs.xmonad-log
       pkgs.quickshell
-    ] ++ optionals (cfg.enable && cfg.terminal == "${pkgs.wezterm}/bin/wezterm") [ wezterm ];
+    ] ++ optionals (cfg.enable && cfg.terminal == "${pkgs.wezterm}/bin/wezterm") [ pkgs.wezterm ];
   };
 }
