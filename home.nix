@@ -1,5 +1,8 @@
-{ config, lib, pkgs, username, lite, ... }:
-
+{ config, lib, pkgs, username, roles, ... }:
+let 
+  gui       = builtins.elem "gui" roles;
+  largeApps = builtins.elem "apps" roles;
+in
 {
   imports = [ ./modules/emacs.nix
               ./modules/vim.nix
@@ -15,10 +18,10 @@
 
   home.packages = [
     (pkgs.callPackage ./pkgs/gforth.nix {})
-    (pkgs.agda.withPackages (p: [ p.standard-library ]))
-  ] ++ lib.optionals (!lite) [
+  ] ++ lib.optionals largeApps [
     pkgs.audacity
     pkgs.musescore
+    (pkgs.agda.withPackages (p: [ p.standard-library ]))
   ] ++ lib.optionals (pkgs.stdenv.isDarwin) [
     (pkgs.writeShellScriptBin "nix-rebuild" ''
        sudo darwin-rebuild switch --flake /Users/${username}/.config/nix
@@ -29,7 +32,7 @@
     pkgs.unnaturalscrollwheels
     pkgs.iina
     pkgs.vlc-bin
-  ] ++ lib.optionals (pkgs.stdenv.isLinux) [
+  ] ++ lib.optionals pkgs.stdenv.isLinux [
     (pkgs.writeShellScriptBin "nix-rebuild" ''
        home-manager switch --flake /home/${username}/.config/home-manager#$(hostname)
        '')
@@ -41,11 +44,11 @@
       pkgs.gnumake
       pkgs.ncurses
       pkgs.pkg-config
-  ] ++ lib.optionals (pkgs.stdenv.isLinux && !lite) [
+  ] ++ lib.optionals (pkgs.stdenv.isLinux && largeApps) [
       pkgs.vlc
       pkgs.kicad
       pkgs.transmission-remote-gtk
-  ] ++ lib.optionals (lite) [
+  ] ++ lib.optionals (!largeApps) [
       pkgs.st
   ];
 
@@ -110,11 +113,11 @@
     ];
   };
 
-  editors.emacs.enable = true;
+  editors.emacs.enable = largeApps;
   editors.vim.enable = true;
 
-  x11.xmonad.enable = pkgs.stdenv.isLinux;
-  x11.xmonad.terminal = lib.optionals lite
+  x11.xmonad.enable = pkgs.stdenv.isLinux && gui;
+  x11.xmonad.terminal = lib.optionals (!largeApps)
     "${pkgs.st}/bin/st";
 
   # Move to yabai config

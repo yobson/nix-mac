@@ -16,7 +16,7 @@
   let homeConf = user: {
         home-manager.extraSpecialArgs = {
           username = user;
-          lite = false;
+          roles = ["gui" "apps"];
         };
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
@@ -75,7 +75,7 @@
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
             username = "james";
-            lite = false;
+            roles = ["gui" "apps"];
           };
           modules = [ ./home.nix ]; # Defined later
         };
@@ -83,7 +83,15 @@
           pkgs = import nixpkgs { system = "aarch64-linux"; };
           extraSpecialArgs = {
             username = "james";
-            lite = true;
+            roles = ["gui"];
+          };
+          modules = [ ./home.nix ]; # Defined later
+        };
+        "helios64" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "aarch64-linux"; };
+          extraSpecialArgs = {
+            username = "james";
+            roles = [];
           };
           modules = [ ./home.nix ]; # Defined later
         };
