@@ -47,6 +47,7 @@ in
   ] ++ lib.optionals (pkgs.stdenv.isLinux && largeApps) [
       pkgs.vlc
       pkgs.kicad
+      pkgs.freecad
       pkgs.transmission-remote-gtk
   ] ++ lib.optionals (!largeApps) [
       pkgs.st
@@ -116,14 +117,14 @@ in
   editors.emacs.enable = largeApps;
   editors.vim.enable = true;
 
-  x11.xmonad = if (pkgs.stdenv.isLinux && gui && largeApps) 
-  then {
-    enable = true;
-  } else if (pkgs.stdenv.isLinux && gui && largeApps)
-  then {
+    x11.xmonad = if (pkgs.stdenv.isLinux && gui && largeApps) 
+    then {
       enable = true;
-      terminal = "${pkgs.st}/bin/st";
-  } else {};
+    } else if (pkgs.stdenv.isLinux && gui && largeApps)
+    then {
+        enable = true;
+        terminal = "${pkgs.st}/bin/st";
+    } else {};
 
   # Move to yabai config
   xdg.configFile = {

@@ -1,4 +1,5 @@
 {-# LANGUAGE LambdaCase #-}
+
 import XMonad
 import System.Exit (exitSuccess)
 import XMonad.Util.EZConfig
@@ -11,15 +12,19 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 import XMonad.Layout.Reflect
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Layout.Renamed
+import XMonad.Layout.LayoutModifier
 
 import Data.Kind
 
 import Rofi
 import Monitor
 import QS
+import FileSystem
 
 main :: IO ()
 main = do
+  startFileSystem
   xmonad $ ewmh $ docks $ def
     { terminal = "@terminal@"
     , startupHook = startUp
@@ -32,7 +37,7 @@ keyBindings :: [(String, X ())]
 keyBindings = 
   [ ("M-<Space>" , spawn "@rofi@ -show drun")
   , ("M-<Return>", spawn "@terminal@")
-  , ("M-S-q"     , kill)
+  , ("M-S-q"     , quit)
   , ("C-M-q"     , io exitSuccess)
   , ("C-M-r"     , selectResolution)
   ]
@@ -42,10 +47,18 @@ startUp = do
   spawnOnce "@feh@ --bg-fill @wallpaper@"
   startQS
 
-layout = avoidStruts
-       $ gaps [(U, 5), (R, 5), (D,5), (L,5)]
-       $ spacing 5
-       $ reflectHoriz $ Tall 1 (3/100) (1/2)
+quit :: X ()
+quit = do
+  kill
+
+spaceSettings 
+  = renamed [CutWordsLeft 1]
+  . avoidStruts
+  . gaps [(U, 5), (R, 5), (D,5), (L,5)]
+  . spacing 5
+
+layout = spaceSettings 
+  $ named "Default" $ reflectHoriz $ Tall 1 (3/100) (1/2)
 
 polybar :: X ()
 polybar = dynamicLogWithPP $ def
