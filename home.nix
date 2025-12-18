@@ -38,8 +38,9 @@ in
        home-manager switch --flake /home/${username}/.config/home-manager#$(hostname)
        '')
       pkgs.racket
-      pkgs.firefox
       pkgs.curl
+  ] ++ lib.optionals (pkgs.stdenv.isLinux && gui) [
+      pkgs.firefox
       pkgs.alacritty
       pkgs.julia-mono
       pkgs.nerd-fonts.fira-code
@@ -117,7 +118,7 @@ in
   editors.vim.enable = true;
 
   x11.xmonad = {
-    enable = pkgs.stdenv.isLinux;
+    enable = pkgs.stdenv.isLinux && gui;
     terminal = "${pkgs.alacritty}/bin/alacritty";
   };
   # Move to yabai config
@@ -148,7 +149,7 @@ in
   };
 
   fonts.fontconfig = { 
-    enable = true;
+    enable = pkgs.stdenv.isLinux && gui;
     defaultFonts = {
       monospace = [ "FiraCode Nerd Font Mono" "JuliaMono" ];
     };
