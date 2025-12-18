@@ -39,18 +39,15 @@ in
       pkgs.racket
       pkgs.firefox
       pkgs.curl
-      pkgs.gcc
-      pkgs.gmp
-      pkgs.gnumake
-      pkgs.ncurses
-      pkgs.pkg-config
+      pkgs.alacritty
+      pkgs.julia-mono
+      pkgs.nerd-fonts.fira-code
   ] ++ lib.optionals (pkgs.stdenv.isLinux && largeApps) [
       pkgs.vlc
       pkgs.kicad
       pkgs.freecad
       pkgs.transmission-remote-gtk
   ] ++ lib.optionals (!largeApps) [
-      pkgs.st
   ];
 
   programs.bash = {
@@ -117,15 +114,10 @@ in
   editors.emacs.enable = largeApps;
   editors.vim.enable = true;
 
-    x11.xmonad = if (pkgs.stdenv.isLinux && gui && largeApps) 
-    then {
-      enable = true;
-    } else if (pkgs.stdenv.isLinux && gui && largeApps)
-    then {
-        enable = true;
-        terminal = "${pkgs.st}/bin/st";
-    } else {};
-
+  x11.xmonad = {
+    enable = pkgs.stdenv.isLinux;
+    terminal = "${pkgs.alacritty}/bin/alacritty";
+  };
   # Move to yabai config
   xdg.configFile = {
     "scripts/open-term.sh" = {
@@ -147,23 +139,18 @@ in
     ".ghci".source = ./dotfiles/ghci;
   };
 
-
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
     nix-direnv.enable = true;
   };
 
-  #  programs.vscode = {
-  #    enable = true;
-  #    package = pkgs.vscodium;
-  #    profiles.default.extensions = with pkgs.vscode-extensions; [
-  #      vscodevim.vim
-  #      haskell.haskell
-  #      mkhl.direnv
-  #      banacorn.agda-mode
-  #    ];
-  #  };
+  fonts.fontconfig = { 
+    enable = true;
+    defaultFonts = {
+      monospace = [ "FiraCode Nerd Font Mono" "JuliaMono" ];
+    };
+  };
 
   home.stateVersion = "24.05";
 

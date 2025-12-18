@@ -62,9 +62,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
+        "id": "flake-utils",
+        "type": "indirect"
       }
     },
     "flake-utils_2": {
@@ -94,11 +93,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766054508,
-        "narHash": "sha256-IEL1wv5hRe5vZu4K09Hb3D0yyRW0F+YG5TYC4ZRCSVE=",
+        "lastModified": 1766055269,
+        "narHash": "sha256-cipH6YOaU7eUyFJMLr8GjhXDF8EmMpZYR7hvG7Ma+50=",
         "owner": "yobson",
         "repo": "home-manager",
-        "rev": "3932b1bc64bb78d584158e21ff217ad4b251d183",
+        "rev": "1610a14219f666afd60640bf82ff562f3641625c",
         "type": "github"
       },
       "original": {
