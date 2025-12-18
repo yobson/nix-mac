@@ -32,6 +32,7 @@ in
     pkgs.unnaturalscrollwheels
     pkgs.iina
     pkgs.vlc-bin
+    pkgs.libreoffice-bin
   ] ++ lib.optionals pkgs.stdenv.isLinux [
     (pkgs.writeShellScriptBin "nix-rebuild" ''
        home-manager switch --flake /home/${username}/.config/home-manager#$(hostname)
