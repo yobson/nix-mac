@@ -103,6 +103,7 @@ in
       "\\~/syncthing" = "";
     };
     modules = [
+      "ssh"
       "nix-shell"
       "cwd"
       "git"
