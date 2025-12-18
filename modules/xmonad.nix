@@ -30,51 +30,37 @@ in {
   config = {
     xsession = {
       enable = cfg.enable;
+
+      windowManager.xmonad = {
+        enable = cfg.enable;
+        enableContribAndExtras = true;
+        extraPackages = hp: [
+          hp.monad-logger
+          hp.stm
+          hp.typed-process
+          hp.bytestring
+          ninep
+        ];
+        config = pkgs.replaceVars ./xmonad/app/Main.hs {
+          terminal   = cfg.terminal;
+          rofi       = "${pkgs.rofi}/bin/rofi";
+          feh        = "${pkgs.feh}/bin/feh";
+          wallpaper  = cfg.wallpaper;
+        };
+        libFiles = {
+          "Rofi.hs" = pkgs.replaceVars ./xmonad/app/Rofi.hs {
+            rofi      = "${pkgs.rofi}/bin/rofi";
+          };
+          "QS.hs" = pkgs.replaceVars ./xmonad/app/QS.hs {
+            quickshell = "${pkgs.quickshell}/bin/quickshell";
+          };
+          "Monitor.hs" = ./xmonad/app/Monitor.hs;
+          "FileSystem.hs" = ./xmonad/app/FileSystem.hs;
+        };
+        buildScript = ./xmonad/build;
+      };
     };
 
-    xdg.configFile = {
-      "xmonad-src/flake.nix".source  = ./xmonad/flake.nix;
-      "xmonad-src/flake.lock".source = ../flake.lock;
-      "xmonad-src/xmonad.cabal".source = ./xmonad/xmonad.cabal;
-      "xmonad-src/deps" = { source = ../pkgs; recursive = true; };
-      "xmonad-src/app/Main.hs".source = pkgs.replaceVars ./xmonad/app/Main.hs {
-        terminal   = cfg.terminal;
-        rofi       = "${pkgs.rofi}/bin/rofi";
-        feh        = "${pkgs.feh}/bin/feh";
-        wallpaper  = cfg.wallpaper;
-      };
-      "xmonad-src/app/Rofi.hs".source = pkgs.replaceVars ./xmonad/app/Rofi.hs {
-        rofi      = "${pkgs.rofi}/bin/rofi";
-      };
-      "xmonad-src/app/QS.hs".source = pkgs.replaceVars ./xmonad/app/QS.hs {
-        quickshell = "${pkgs.quickshell}/bin/quickshell";
-      };
-      "xmonad-src/app/Monitor.hs".source = ./xmonad/app/Monitor.hs;
-      "xmonad-src/app/FileSystem.hs".source = ./xmonad/app/FileSystem.hs;
-    };
-
-    home.activation."XMonad" = lib.hm.dag.entryAfter ["onFilesChange"] ''
-      rm -fr ~/.config/xmonad
-      mkdir -p ~/.config/xmonad
-        cp -rL ${config.home.homeDirectory}/.config/xmonad-src/* ${config.home.homeDirectory}/.config/xmonad
-      '';
-
-      #config = pkgs.replaceVars ./xmonad/app/Main.hs {
-      #  terminal   = cfg.terminal;
-      #  rofi       = "${pkgs.rofi}/bin/rofi";
-      #  feh        = "${pkgs.feh}/bin/feh";
-      #  wallpaper  = cfg.wallpaper;
-      #};
-      #libFiles = {
-      #  "Rofi.hs" = pkgs.replaceVars ./xmonad/app/Rofi.hs {
-      #    rofi      = "${pkgs.rofi}/bin/rofi";
-      #  };
-      #  "QS.hs" = pkgs.replaceVars ./xmonad/app/QS.hs {
-      #    quickshell = "${pkgs.quickshell}/bin/quickshell";
-      #  };
-      #  "Monitor.hs" = ./xmonad/app/Monitor.hs;
-      #  "FileSystem.hs" = ./xmonad/app/FileSystem.hs;
-      #};
 
     #    xdg.configFile."quickshell" = {
     #      recursive = true;

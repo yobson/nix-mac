@@ -94,15 +94,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1765217760,
-        "narHash": "sha256-BVVyAodLcAD8KOtR3yCStBHSE0WAH/xQWH9f0qsxbmk=",
-        "owner": "nix-community",
+        "lastModified": 1766054508,
+        "narHash": "sha256-IEL1wv5hRe5vZu4K09Hb3D0yyRW0F+YG5TYC4ZRCSVE=",
+        "owner": "yobson",
         "repo": "home-manager",
-        "rev": "e5b1f87841810fc24772bf4389f9793702000c9b",
+        "rev": "3932b1bc64bb78d584158e21ff217ad4b251d183",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "yobson",
+        "ref": "xmonad-options",
         "repo": "home-manager",
         "type": "github"
       }

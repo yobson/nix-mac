@@ -6,7 +6,8 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    home-manager.url = "github:nix-community/home-manager";
+    #home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:yobson/home-manager?ref=xmonad-options";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     mac-app-util.url = "github:hraban/mac-app-util";
     mac-app-util.inputs.nixpkgs.follows = "nixpkgs";
