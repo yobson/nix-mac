@@ -13,21 +13,8 @@ in {
     programs.emacs = {
       enable = true;
       package = if pkgs.stdenv.isDarwin 
-        then pkgs.emacs-unstable.overrideAttrs (old: {
-        patches =
-          (old.patches or []
-            ++ [
-              (pkgs.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/refs/heads/master/patches/emacs-28/fix-window-role.patch";
-                sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
-              })
-              (pkgs.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/refs/heads/master/patches/emacs-30/round-undecorated-frame.patch";
-                sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
-              })
-            ]);
-      })
-      else pkgs.emacs;
+        then pkgs.emacs-macport
+        else pkgs.emacs;
       extraConfig = builtins.concatStringsSep "\n" [
         (builtins.readFile ./emacs/latex-conf.el)
         (builtins.readFile ./emacs/markdown-conf.el)

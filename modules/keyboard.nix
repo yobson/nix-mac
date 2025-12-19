@@ -306,6 +306,8 @@
       Sigma = "Σ";
       sum = "∑";
       times = "×";
+      theta = "θ";
+      Theta = "Θ";
       to = "→";
       To = "⇒";
       vdash = "⊢";

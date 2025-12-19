@@ -1,12 +1,5 @@
 { pkgs, config, homedir, user, ... }: 
 {
-  nixpkgs.overlays = [
-    (import (builtins.fetchGit {
-      url = "https://github.com/nix-community/emacs-overlay.git";
-      ref = "master";
-      rev = "b4ffd36bc464accccc8868d7ec498eeb21c6d272";
-    }))
-  ];
 
   imports = [./modules/windows.nix];
   nixpkgs.config.allowUnfree = true;
@@ -82,7 +75,7 @@
         "/System/Applications/App Store.app"
         "/System/Applications/Passwords.app"
         "/System/Applications/iPhone Mirroring.app"
-        "${pkgs.emacsMacport}/Applications/Emacs.app"
+        "${pkgs.emacs-macport}/Applications/Emacs.app"
         "${pkgs.net-news-wire}/Applications/NetNewsWire.app"
         "/System/Applications/System Settings.app"
       ];
