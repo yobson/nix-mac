@@ -51,6 +51,7 @@ in
       pkgs.transmission-remote-gtk
   ] ++ lib.optionals (!largeApps) [
   ];
+  targets.darwin.copyApps.enable = false;
 
   programs.bash = {
     enable = true;
@@ -155,7 +156,7 @@ in
     };
   };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
 }

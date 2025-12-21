@@ -91,6 +91,8 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   nix.settings.experimental-features = "nix-command flakes";
+  # nix.linux-builder.enable = true;
+  nix.settings.trusted-users = [ "@admin" ];
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

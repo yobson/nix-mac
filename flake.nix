@@ -11,29 +11,34 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     mac-app-util.url = "github:hraban/mac-app-util";
     mac-app-util.inputs.nixpkgs.follows = "nixpkgs";
+    mac-app-util.inputs.cl-nix-lite.url = "github:r4v3n6101/cl-nix-lite/url-fix";
+    nix-rosetta-builder = {
+      url = "github:cpick/nix-rosetta-builder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util, flake-utils }:
-  let homeConf = user: {
-        home-manager.extraSpecialArgs = {
-          username = user;
-          roles = ["gui" "apps"];
-        };
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.${user} = ./home.nix;
-        home-manager.backupFileExtension = "hm-backup";
-        home-manager.sharedModules = [
-          mac-app-util.homeManagerModules.default
-        ];
-
-        # Optionally, use home-manager.extraSpecialArgs to pass
-        # arguments to home.nix
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util, nix-rosetta-builder }:
+    let homeConf = user: {
+      home-manager.extraSpecialArgs = {
+        username = user;
+        roles = ["gui" "apps"];
       };
-  in
-  {
-    # Build darwin flake using:
-   darwinConfigurations."James-MacBook-Personal" = nix-darwin.lib.darwinSystem {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.${user} = ./home.nix;
+      home-manager.backupFileExtension = "hm-backup";
+      home-manager.sharedModules = [
+        mac-app-util.homeManagerModules.default
+      ];
+
+      # Optionally, use home-manager.extraSpecialArgs to pass
+      # arguments to home.nix
+    };
+    in
+      {
+      # Build darwin flake using:
+      darwinConfigurations."James-MacBook-Personal" = nix-darwin.lib.darwinSystem {
         specialArgs = {
           user = "jameshobson";
           homedir = "/Users/jameshobson";
@@ -52,7 +57,7 @@
           home-manager.darwinModules.home-manager (homeConf "jameshobson")
         ];
       };
-    darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
         specialArgs = {
           user = "james.hobson";
           homedir = "/Users/james.hobson";
@@ -69,6 +74,10 @@
             };
           }
           home-manager.darwinModules.home-manager (homeConf "james.hobson")
+          nix-rosetta-builder.darwinModules.default {
+            # see available options in module.nix's `options.nix-rosetta-builder`
+            nix-rosetta-builder.onDemand = true;
+          }
         ];
       };
       homeConfigurations = {
@@ -97,5 +106,5 @@
           modules = [ ./home.nix ]; # Defined later
         };
       };
-  };
+    };
 }
