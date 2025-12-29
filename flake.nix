@@ -26,7 +26,9 @@
       };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users.${user} = ./home.nix;
+      home-manager.users.${user} = {
+        imports = [ ./home.nix ];
+      };
       home-manager.backupFileExtension = "hm-backup";
       home-manager.sharedModules = [
         mac-app-util.homeManagerModules.default

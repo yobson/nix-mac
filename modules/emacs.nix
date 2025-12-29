@@ -13,7 +13,7 @@ in {
     programs.emacs = {
       enable = true;
       package = if pkgs.stdenv.isDarwin 
-        then pkgs.emacs-macport
+        then pkgs.emacs
         else pkgs.emacs;
       extraConfig = builtins.concatStringsSep "\n" [
         (builtins.readFile ./emacs/latex-conf.el)
