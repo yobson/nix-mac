@@ -1,8 +1,8 @@
-{pkgs, lib, ...}:
+{pkgs, lib, config, ...}:
 let darwinAlt = l: d: if pkgs.stdenv.isLinux then l else d;
 in {
 
-  import = [ ./modules/emacs.nix ];
+  imports = [ ./modules/emacs.nix ];
 
   home.packages = with pkgs; [
     audacity

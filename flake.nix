@@ -22,12 +22,15 @@
     let homeConf = user: {
       home-manager.extraSpecialArgs = {
         username = user;
-        roles = ["gui" "apps"];
       };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${user} = {
-        imports = [ ./home.nix ];
+        imports = [ 
+          ./home.nix
+          ./darwin.nix
+          ./desktop.nix
+        ];
       };
       home-manager.backupFileExtension = "hm-backup";
       home-manager.sharedModules = [
@@ -89,7 +92,12 @@
             username = "james";
             roles = ["gui" "apps"];
           };
-          modules = [ ./home.nix ]; # Defined later
+          modules = [
+            ./home.nix
+            ./linux.nix
+            ./desktop.nix
+            ./graphical.nix
+          ];
         };
         "rpi5-james" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "aarch64-linux"; };
@@ -97,15 +105,34 @@
             username = "james";
             roles = ["gui"];
           };
-          modules = [ ./home.nix ]; # Defined later
+          modules = [
+            ./home.nix
+            ./linux.nix
+            ./graphical.nix
+          ];
         };
         "helios64" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "aarch64-linux"; };
           extraSpecialArgs = {
             username = "james";
-            roles = [];
           };
-          modules = [ ./home.nix ]; # Defined later
+          modules = [
+            ./home.nix
+            ./linux.nix
+          ];
+        };
+        "leedsPC" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          extraSpecialArgs = {
+            username = "james";
+            roles = ["gui" "apps"];
+          };
+          modules = [
+            ./home.nix
+            ./linux.nix
+            ./desktop.nix
+            ./graphical.nix
+          ];
         };
       };
     };
