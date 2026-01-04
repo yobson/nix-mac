@@ -2,7 +2,7 @@
 let darwinAlt = l: d: if pkgs.stdenv.isLinux then l else d;
 in {
 
-  imports = [ ./modules/emacs.nix ];
+  imports = [ ./modules/emacs ];
 
   home.packages = with pkgs; [
     audacity

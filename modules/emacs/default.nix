@@ -16,12 +16,12 @@ in {
         then pkgs.emacs
         else pkgs.emacs;
       extraConfig = builtins.concatStringsSep "\n" [
-        (builtins.readFile ./emacs/latex-conf.el)
-        (builtins.readFile ./emacs/markdown-conf.el)
-        (builtins.readFile ./emacs/maths-blocks.el)
-        (builtins.readFile ./emacs/org-conf.el)
-        (builtins.readFile ./emacs/config.el)
-        (builtins.readFile ./emacs/theme-conf.el)        
+        (builtins.readFile ./latex-conf.el)
+        (builtins.readFile ./markdown-conf.el)
+        (builtins.readFile ./maths-blocks.el)
+        (builtins.readFile ./org-conf.el)
+        (builtins.readFile ./config.el)
+        (builtins.readFile ./theme-conf.el)        
         ''
       ; (setq agda2-program "${pkgs.agda}/bin/agda")
 
@@ -55,18 +55,19 @@ in {
           auto-dark
           material-theme
           exec-path-from-shell
+          obsidian
         ];
     };
 
     home.file = {
-      ".emacs.d/early-init.el".source = ./emacs/init-early.el;
-      ".emacs.d/emacs.png".source = ./emacs/emacs.png;
+      ".emacs.d/early-init.el".source = ./init-early.el;
+      ".emacs.d/emacs.png".source = ./emacs.png;
     };
 
     xdg.configFile = {
       "dictionaries" = {
         recursive = true;
-        source = ./emacs/dictionaries;
+        source = ./dictionaries;
       };
     };
 

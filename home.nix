@@ -1,7 +1,7 @@
 { config, lib, pkgs, username, ... }:
 
 {
-  imports = [ ./modules/vim.nix
+  imports = [ ./modules/vim
               ./modules/keyboard.nix
             ];
 

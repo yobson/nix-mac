@@ -36,14 +36,14 @@ in {
       extraLuaConfig = ''
       require("config")
       '';
-      extraConfig = builtins.readFile ./vim/vimrc;
+      extraConfig = builtins.readFile ./vimrc;
       extraPackages = [ pkgs.cornelis ];
     };
 
 
     xdg.configFile."nvim/lua/config" = {
       recursive = true;
-      source = ./vim/config;
+      source = ./config;
     };
   };
 }
