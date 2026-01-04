@@ -1,6 +1,6 @@
 {pkgs, ...}:
 
-imports = [ ./xmonad.nix ];
+imports = [ ./modules/xmonad ];
 
 {
   home.packages = with pkgs; [

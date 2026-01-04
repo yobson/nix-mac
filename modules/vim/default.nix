@@ -30,7 +30,6 @@ in {
         vim-devicons
         nvim-lspconfig
         markdown-preview-nvim
-        vim-emacs-bindings
         # cornelis
       ];
       extraLuaConfig = ''

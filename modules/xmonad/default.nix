@@ -3,7 +3,7 @@ with lib;
 
 let
   cfg = config.x11.xmonad;
-  ninep = pkgs.haskellPackages.callPackage ../pkgs/ninepmonad.nix {};
+  ninep = pkgs.haskellPackages.callPackage ../../pkgs/ninepmonad.nix {};
 
 in {
   options.x11.xmonad = {
@@ -14,11 +14,11 @@ in {
     };
     rofi-theme = mkOption {
       type = types.path;
-      default = ./xmonad/rofi-theme.rasi;
+      default = ./rofi-theme.rasi;
     };
     polybar-config = mkOption {
       type = types.path;
-      default = pkgs.replaceVars ./xmonad/polybar.ini {
+      default = pkgs.replaceVars ./polybar.ini {
         xmonad-log = "${pkgs.xmonad-log}/bin/xmonad-log";
       };
     };
@@ -41,30 +41,30 @@ in {
           hp.bytestring
           ninep
         ];
-        config = pkgs.replaceVars ./xmonad/app/Main.hs {
+        config = pkgs.replaceVars ./app/Main.hs {
           terminal   = cfg.terminal;
           rofi       = "${pkgs.rofi}/bin/rofi";
           feh        = "${pkgs.feh}/bin/feh";
           wallpaper  = cfg.wallpaper;
         };
         libFiles = {
-          "Rofi.hs" = pkgs.replaceVars ./xmonad/app/Rofi.hs {
+          "Rofi.hs" = pkgs.replaceVars ./app/Rofi.hs {
             rofi      = "${pkgs.rofi}/bin/rofi";
           };
-          "QS.hs" = pkgs.replaceVars ./xmonad/app/QS.hs {
+          "QS.hs" = pkgs.replaceVars ./app/QS.hs {
             quickshell = "${pkgs.quickshell}/bin/quickshell";
           };
-          "Monitor.hs" = ./xmonad/app/Monitor.hs;
-          "FileSystem.hs" = ./xmonad/app/FileSystem.hs;
+          "Monitor.hs" = ./app/Monitor.hs;
+          "FileSystem.hs" = ./app/FileSystem.hs;
         };
-        buildScript = ./xmonad/build;
+        buildScript = ./build;
       };
     };
 
 
     #    xdg.configFile."quickshell" = {
     #      recursive = true;
-    #      source = ./xmonad/quickshell;
+    #      source = ./quickshell;
     #    };
 
     programs.rofi = {

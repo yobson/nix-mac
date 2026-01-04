@@ -2,7 +2,7 @@
 
 {
   imports = [ ./modules/vim
-              ./modules/keyboard.nix
+              ./modules/keyboard
             ];
 
   home.username = username;
