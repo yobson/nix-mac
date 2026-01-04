@@ -1,6 +1,6 @@
 {pkgs, ...}:
 {
-  imports = [ ../libs/macCompose.nix ];
+  imports = [ ../../libs/macCompose.nix ];
 
   macCompose = {
     enable = true;

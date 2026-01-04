@@ -6,6 +6,10 @@ let
 in {
   options.editors.emacs = {
     enable = mkEnableOption "Install and setup emacs";
+    obsidianDir = mkOption {
+      type = types.str;
+      default = "~/syncthing/Obsidian Vault";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -13,14 +17,16 @@ in {
     programs.emacs = {
       enable = true;
       package = if pkgs.stdenv.isDarwin 
-        then pkgs.emacs
+        then pkgs.emacs-macport
         else pkgs.emacs;
       extraConfig = builtins.concatStringsSep "\n" [
         (builtins.readFile ./latex-conf.el)
         (builtins.readFile ./markdown-conf.el)
         (builtins.readFile ./maths-blocks.el)
         (builtins.readFile ./org-conf.el)
-        (builtins.readFile ./config.el)
+        (pkgs.replaceVars ./config.el {
+          obsidianDir = cfg.obsidianDir;
+        })
         (builtins.readFile ./theme-conf.el)        
         ''
       ; (setq agda2-program "${pkgs.agda}/bin/agda")
