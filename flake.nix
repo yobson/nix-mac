@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     mac-app-util.url = "github:hraban/mac-app-util";
     mac-app-util.inputs.nixpkgs.follows = "nixpkgs";
-    mac-app-util.inputs.cl-nix-lite.url = "github:r4v3n6101/cl-nix-lite/url-fix";
+    #mac-app-util.inputs.cl-nix-lite.url = "github:r4v3n6101/cl-nix-lite/url-fix";
     nix-rosetta-builder = {
       url = "github:cpick/nix-rosetta-builder";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +60,7 @@
             };
           }
           home-manager.darwinModules.home-manager (homeConf "jameshobson")
+          mac-app-util.darwinModules.default
         ];
       };
       darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
@@ -83,6 +84,7 @@
             # see available options in module.nix's `options.nix-rosetta-builder`
             nix-rosetta-builder.onDemand = true;
           }
+          mac-app-util.darwinModules.default
         ];
       };
       homeConfigurations = {

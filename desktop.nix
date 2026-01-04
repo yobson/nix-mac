@@ -7,6 +7,7 @@ in {
   home.packages = with pkgs; [
     audacity
     musescore
+    obsidian
     (agda.withPackages (p: [ p.standard-library ]))
     (darwinAlt vlc vlc-bin)
     (darwinAlt libreoffice libreoffice-bin)

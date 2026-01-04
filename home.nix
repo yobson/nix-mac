@@ -16,6 +16,7 @@
   ];
 
   targets.darwin.copyApps.enable = false;
+  targets.darwin.linkApps.enable = true;
 
   programs.bash = {
     enable = true;
