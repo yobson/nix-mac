@@ -17,16 +17,34 @@ in {
     programs.emacs = {
       enable = true;
       package = if pkgs.stdenv.isDarwin 
-        then pkgs.emacs-macport
-        else pkgs.emacs;
+        then pkgs.emacs.overrideAttrs (old: {
+          patches = (old.patches or [])
+            ++ [
+              (pkgs.fetchpatch {
+                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/fix-window-role.patch";
+                sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
+              })
+              # Enable rounded window with no decoration
+              (pkgs.fetchpatch {
+                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-30/round-undecorated-frame.patch";
+                sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
+              })
+              # Make Emacs aware of OS-level light/dark mode
+              (pkgs.fetchpatch {
+                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-30/system-appearance.patch";
+                sha256 = "sha256-3QLq91AQ6E921/W9nfDjdOUWR8YVsqBAT/W9c1woqAw=";
+              })
+            ];
+        })
+      else pkgs.emacs;
       extraConfig = builtins.concatStringsSep "\n" [
         (builtins.readFile ./latex-conf.el)
         (builtins.readFile ./markdown-conf.el)
         (builtins.readFile ./maths-blocks.el)
         (builtins.readFile ./org-conf.el)
-        (pkgs.replaceVars ./config.el {
+        (builtins.readFile (pkgs.replaceVars ./config.el {
           obsidianDir = cfg.obsidianDir;
-        })
+        }))
         (builtins.readFile ./theme-conf.el)        
         ''
       ; (setq agda2-program "${pkgs.agda}/bin/agda")
