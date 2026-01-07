@@ -89,7 +89,10 @@
       };
       homeConfigurations = {
         "nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs { 
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
           extraSpecialArgs = {
             username = "james";
             roles = ["gui" "apps"];

@@ -1,8 +1,9 @@
 {pkgs, ...}:
 
-imports = [ ./modules/xmonad ];
-
 {
+
+  imports = [ ./modules/xmonad ];
+
   home.packages = with pkgs; [
     firefox
     alacritty

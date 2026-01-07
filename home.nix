@@ -16,7 +16,7 @@
   ];
 
   targets.darwin.copyApps.enable = false;
-  targets.darwin.linkApps.enable = true;
+  targets.darwin.linkApps.enable = pkgs.stdenv.isDarwin;
 
   programs.bash = {
     enable = true;
