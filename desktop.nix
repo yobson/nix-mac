@@ -12,9 +12,10 @@ in {
     (darwinAlt vlc vlc-bin)
     (darwinAlt libreoffice libreoffice-bin)
   ] ++ lib.optionals stdenv.isLinux [
-      pkgs.kicad
-      pkgs.freecad
-      pkgs.transmission-remote-gtk
+      kicad
+      freecad
+      transmission-remote-gtk
+      firefox
     ];
 
   editors.emacs.enable = true;

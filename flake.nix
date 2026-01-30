@@ -102,18 +102,26 @@
             ./graphical.nix
           ];
         };
-        "rpi5-james" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "aarch64-linux"; };
-          extraSpecialArgs = {
-            username = "james";
-            roles = ["gui"];
+        "rpi5-james" = let 
+          pkgs = import nixpkgs { 
+            system = "aarch64-linux";
+            config.allowUnfree = true;
           };
-          modules = [
-            ./home.nix
-            ./linux.nix
-            ./graphical.nix
-          ];
-        };
+        in home-manager.lib.homeManagerConfiguration {
+            pkgs = pkgs;
+            extraSpecialArgs = {
+              username = "james";
+            };
+            modules = [
+              ./home.nix
+              ./linux.nix
+              { 
+                home.packages = [ pkgs.firefox ];
+                imports = [ ./modules/emacs ];
+                editors.emacs.enable = true;
+              }
+            ];
+          };
         "helios64" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "aarch64-linux"; };
           extraSpecialArgs = {
