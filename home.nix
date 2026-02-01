@@ -2,18 +2,25 @@
 
 {
   imports = [ ./modules/vim
-              ./modules/keyboard
-            ];
+    ./modules/keyboard
+  ];
 
   home.username = username;
   home.homeDirectory = if pkgs.stdenv.isDarwin 
     then "/Users/${username}"
-    else "/home/${username}";
+  else "/home/${username}";
 
   home.packages = with pkgs; [
     (callPackage ./pkgs/gforth.nix {})
     plan9port
   ];
+
+  home.sessionVariables = {
+    GTK_IM_MODULE="xim";
+    QT_IM_MODULE="xim";
+    ECORE_IMF_MODULE="xim";
+    XMODIFIERS="@im=local";
+  };
 
   targets.darwin.copyApps.enable = false;
   targets.darwin.linkApps.enable = pkgs.stdenv.isDarwin;
@@ -42,7 +49,7 @@
     maxCacheTtl = 7200;
     pinentry.package = if pkgs.stdenv.isDarwin 
       then pkgs.pinentry_mac
-      else pkgs.pinentry-qt;
+    else pkgs.pinentry-qt;
     enableScDaemon = false;
   };
 
