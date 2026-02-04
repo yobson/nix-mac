@@ -121,7 +121,10 @@
               ;; Open a different note from vault
               ("C-c C-p" . obsidian-jump)
               ;; Follow a backlink for the current file
-              ("C-c C-b" . obsidian-backlink-jump)))
+              ("C-c C-b" . obsidian-backlink-jump))
+  :hook
+  (obsidian-mode . flyspell-mode)
+  (obsidian-mode . visual-line-mode))
 
 (setq inhibit-startup-screen t)
 (setq latex-preview-pane-use-frame nil) ; Optional: use same frame

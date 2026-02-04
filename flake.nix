@@ -28,6 +28,7 @@
           ./home.nix
           ./darwin.nix
           ./desktop.nix
+          { editors.emacs.obsidianDir = "~/Obsidian/Notes"; }
         ];
       };
       home-manager.backupFileExtension = "hm-backup";
