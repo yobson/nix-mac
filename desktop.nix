@@ -8,6 +8,7 @@ in {
     audacity
     musescore
     obsidian
+    fritzing
     (agda.withPackages (p: [ p.standard-library ]))
     (darwinAlt vlc vlc-bin)
     (darwinAlt libreoffice libreoffice-bin)
@@ -15,6 +16,7 @@ in {
       kicad
       freecad
       transmission-remote-gtk
+      kdePackages.kalgebra
       firefox
     ];
 
