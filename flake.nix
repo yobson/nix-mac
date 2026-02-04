@@ -100,7 +100,7 @@
             ./home.nix
             ./linux.nix
             ./desktop.nix
-            ./graphical.nix
+            { editors.emacs.obsidianDir = "~/Obsidian/Notes"; }
           ];
         };
         "rpi5-james" = let 

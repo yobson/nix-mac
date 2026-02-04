@@ -12,7 +12,7 @@
   ];
 
   x11.xmonad = {
-    enable = false;
+    enable = true;
     terminal = "${pkgs.alacritty}/bin/alacritty";
   };
 
