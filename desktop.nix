@@ -9,6 +9,7 @@ in {
     musescore
     obsidian
     fritzing
+    discordo
     (agda.withPackages (p: [ p.standard-library ]))
     (darwinAlt vlc vlc-bin)
     (darwinAlt libreoffice libreoffice-bin)
