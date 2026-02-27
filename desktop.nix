@@ -10,6 +10,7 @@ in {
     obsidian
     fritzing
     discordo
+    kando
     (agda.withPackages (p: [ p.standard-library ]))
     (darwinAlt vlc vlc-bin)
     (darwinAlt libreoffice libreoffice-bin)
