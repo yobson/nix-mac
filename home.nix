@@ -39,9 +39,6 @@
 
   programs.gpg = {
     enable = true;
-    settings = {
-      keyserver = "hkps://keyserver.ubuntu.com";
-    };
   };
   services.gpg-agent = {
     enable = true;
@@ -60,8 +57,8 @@
       "dist-newstyle"
     ];
     settings.user = {
-      userEmail = "james@hobson.space";
-      userName = "James Hobson";
+      email = "james@hobson.space";
+      name = "James Hobson";
     };
     signing.signByDefault = true;
     signing.key = "D5E8 7B99 20A0 F392 857E  6212 27B6 62CE FCE9 BE00";

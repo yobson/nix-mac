@@ -80,6 +80,7 @@ in {
           material-theme
           exec-path-from-shell
           obsidian
+          ement
         ];
     };
 

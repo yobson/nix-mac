@@ -45,7 +45,9 @@
 ; (require 'tree-sitter)
 ; (require 'tree-sitter-langs)
 
-(use-package haskell-mode)
+(use-package haskell-mode
+             :hook ((haskell-mode . display-line-numbers-mode)))
+
 (use-package nix-mode
              :mode "\\.nix\\'")
 
@@ -106,7 +108,7 @@
   ;; location of obsidian vault
   (obsidian-directory "@obsidianDir@")
   ;; Default location for new notes from `obsidian-capture'
-  (obsidian-inbox-directory "Inbox")
+  ;; (obsidian-inbox-directory "Inbox")
   ;; Useful if you're going to be using wiki links
   (markdown-enable-wiki-links t)
 
@@ -159,7 +161,6 @@
 (use-package direnv
              :config
              (direnv-mode))
-
 
 ;; Enable basic mouse support in terminal
 (xterm-mouse-mode 1)

@@ -32,7 +32,7 @@ in {
         markdown-preview-nvim
         # cornelis
       ];
-      extraLuaConfig = ''
+      initLua = ''
       require("config")
       '';
       extraConfig = builtins.readFile ./vimrc;

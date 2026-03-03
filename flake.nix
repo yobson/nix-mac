@@ -8,8 +8,8 @@
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    mac-app-util.url = "github:hraban/mac-app-util";
-    mac-app-util.inputs.nixpkgs.follows = "nixpkgs";
+    # mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util.url = "github:mcflis/mac-app-util/fix/missing-icons";
     nix-rosetta-builder = {
       url = "github:cpick/nix-rosetta-builder";
       inputs.nixpkgs.follows = "nixpkgs";
