@@ -20,6 +20,7 @@ in {
       transmission-remote-gtk
       kdePackages.kalgebra
       firefox
+      cambalache
     ];
 
   editors.emacs.enable = true;
