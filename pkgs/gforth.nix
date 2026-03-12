@@ -1,6 +1,6 @@
-{ stdenv, fetchzip, pkgs }:
+{ gcc13Stdenv, fetchzip, pkgs }:
 
-stdenv.mkDerivation {
+gcc13Stdenv.mkDerivation {
   pname = "gforth";
   version = "0.7.3";
   src = fetchzip {

@@ -21,6 +21,7 @@ in {
       kdePackages.kalgebra
       firefox
       cambalache
+      blueprint-compiler
     ];
 
   editors.emacs.enable = true;
