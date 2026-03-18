@@ -36,8 +36,6 @@
         mac-app-util.homeManagerModules.default
       ];
 
-      # Optionally, use home-manager.extraSpecialArgs to pass
-      # arguments to home.nix
     };
     in
       {
@@ -60,6 +58,12 @@
           }
           home-manager.darwinModules.home-manager (homeConf "jameshobson")
           mac-app-util.darwinModules.default
+        ];
+      };
+      nixosConfigurations."macvm" = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./system/linux/hardware/macvm.nix
+          ./system/linux
         ];
       };
       darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
