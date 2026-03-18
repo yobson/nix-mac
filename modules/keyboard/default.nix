@@ -296,6 +296,7 @@
       lub = "⊔";
       mapsto = "↦";
       neg = "¬";
+      not = "̸";
       or = "∨";
       phi = "ϕ";
       psi = "ψ";

@@ -42,14 +42,17 @@
         "gnu-tar"
         "gawk"
     ];
+    casks = [
+      "Sikarugir-App/sikarugir/sikarugir"
+    ];
 #masApps = {
 #  "UTM" = 1538878817;
 #  "reMarkable" = 1276493162;
 #  "(beat)" = 1549538329;
 #  "Zeroconf Browser" = 1355001318;
 #};
-#onActivation.autoUpdate = true;
-#onActivation.upgrade = true;
+    onActivation.autoUpdate = true;
+    onActivation.upgrade = true;
   };
 
   system.defaults = {
@@ -100,17 +103,17 @@
   programs.bash.enable = true;
   environment.shells = with pkgs; [ bashInteractive ];
 
-  launchd.user.agents = {
-    kando = {
-      command = "${pkgs.kando}/bin/kando";
-      serviceConfig = {
-        KeepAlive = true;
-        RunAtLoad = true;
-        StandardOutPath = "/tmp/ollama_danielcorin.out.log";
-        StandardErrorPath = "/tmp/ollama_danielcorin.err.log";
-      };
-    };
-  };
+# launchd.user.agents = {
+#   kando = {
+#     command = "${pkgs.kando}/bin/kando";
+#     serviceConfig = {
+#       KeepAlive = true;
+#       RunAtLoad = true;
+#       StandardOutPath = "/tmp/ollama_danielcorin.out.log";
+#       StandardErrorPath = "/tmp/ollama_danielcorin.err.log";
+#     };
+#   };
+# };
 
   system.primaryUser = user;
   users.users.${user} = {
