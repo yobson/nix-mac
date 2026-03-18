@@ -64,6 +64,17 @@
         modules = [
           ./system/linux/hardware/macvm.nix
           ./system/linux
+          home-manager.nixosModules.home-manager {
+            home-manager.extraSpecialArgs = { username = "james"; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.james = { 
+              imports = [
+                ./home.nix
+                ./linux.nix
+              ];
+            };
+          }
         ];
       };
       darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
@@ -98,7 +109,6 @@
           };
           extraSpecialArgs = {
             username = "james";
-            roles = ["gui" "apps"];
           };
           modules = [
             ./home.nix
@@ -141,7 +151,6 @@
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
             username = "james";
-            roles = ["gui" "apps"];
           };
           modules = [
             ./home.nix

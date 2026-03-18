@@ -13,14 +13,15 @@
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_GB.UTF-8";
-  services.xserver.enable = true;
 
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
-  services.xserver.xkb = {
-    layout = "gb";
+  services.xserver = { 
+    enable = true;
+    desktopManager.xfce.enable = true;
+    xkb = {
+      layout = "gb";
+    };
   };
+
 
   console.keyMap = "uk";
 
