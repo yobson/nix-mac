@@ -13,6 +13,7 @@
   home.packages = with pkgs; [
     # (callPackage ./pkgs/gforth.nix {})
     plan9port
+    git-crypt
   ];
 
   home.sessionVariables = {

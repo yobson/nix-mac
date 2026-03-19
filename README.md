@@ -5,6 +5,7 @@ Things to install:
 - SF Symbols
 - ghcup
 - Karabiner-Elements
+- git-crypt (in nix)
 
 
 TODO:
