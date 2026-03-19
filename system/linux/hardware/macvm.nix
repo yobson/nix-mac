@@ -33,5 +33,8 @@
 
   swapDevices = [ ];
 
+  networking.hostName = "macvm";
+  virtualisation.rosetta.enable = true;
+
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
