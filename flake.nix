@@ -60,8 +60,9 @@
 
       nixosConfigurations."macvm" = nixpkgs.lib.nixosSystem {
         modules = [
-          ./system/linux/hardware/macvm.nix
           ./system/linux
+          ./system/linux/wm.nix
+          ./system/linux/hardware/macvm.nix
           ({pkgs,...}: { environment.systemPackages = with pkgs; [
               firefox
               cambalache
