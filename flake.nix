@@ -61,6 +61,11 @@
         modules = [
           ./system/linux/hardware/macvm.nix
           ./system/linux
+          ({pkgs,...}: { environment.systemPackages = with pkgs; [
+              firefox
+              cambalache
+            ];
+          })
           home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = { username = "james"; };
             home-manager.useGlobalPkgs = true;

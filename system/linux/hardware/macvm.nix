@@ -22,6 +22,15 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/mnt/share" = {
+     device = "share";
+     fsType = "virtiofs";
+     options = [
+       "nofail"
+       "x-systemd.automount"
+     ];
+   };
+
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";

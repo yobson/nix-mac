@@ -6,6 +6,5 @@
     home-manager switch --flake /home/${username}/.config/home-manager#$(hostname)
   '')
     curl
-    cambalache
   ];
 }
