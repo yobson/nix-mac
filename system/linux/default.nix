@@ -9,19 +9,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "macvm"; # Define your hostname.
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_GB.UTF-8";
-
-  services.xserver = { 
-    enable = true;
-    desktopManager.xfce.enable = true;
-    xkb = {
-      layout = "gb";
-    };
-  };
-
 
   console.keyMap = "uk";
 
@@ -43,9 +33,23 @@
     packages = with pkgs; [
     ];
   };
+  
+  programs.nix-ld.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
   ];
+
+  fonts = 
+    let 
+      berkeley-mono-typeface = pkgs.callPackage ../../private/pkgs/berkeley-mono-typeface.nix { inherit pkgs; };
+    in {
+      fontDir.enable = true;
+      enableGhostscriptFonts = true;
+      packages = with pkgs; [
+        berkeley-mono-typeface
+      ];
+  };
 
   system.stateVersion = "25.11"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

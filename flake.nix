@@ -57,6 +57,7 @@
           mac-app-util.darwinModules.default
         ];
       };
+
       nixosConfigurations."macvm" = nixpkgs.lib.nixosSystem {
         modules = [
           ./system/linux/hardware/macvm.nix
@@ -79,6 +80,28 @@
           }
         ];
       };
+
+      nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./system/linux
+          ./system/linux/wm.nix
+          ./system/linux/hardware/laptop.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.extraSpecialArgs = { username = "james"; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.james = { 
+              imports = [
+                ./home.nix
+                ./linux.nix
+                ./desktop.nix
+                { editors.emacs.obsidianDir = "~/Obsidian/Notes"; }
+              ];
+            };
+          }
+        ];
+      };
+
       darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
         specialArgs = {
           user = "james.hobson";
@@ -101,21 +124,6 @@
         ];
       };
       homeConfigurations = {
-        "nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { 
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-          };
-          extraSpecialArgs = {
-            username = "james";
-          };
-          modules = [
-            ./home.nix
-            ./linux.nix
-            ./desktop.nix
-            { editors.emacs.obsidianDir = "~/Obsidian/Notes"; }
-          ];
-        };
         "rpi5-james" = let 
           pkgs = import nixpkgs { 
             system = "aarch64-linux";
@@ -136,6 +144,7 @@
               }
             ];
           };
+
         "helios64" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "aarch64-linux"; };
           extraSpecialArgs = {
@@ -146,6 +155,7 @@
             ./linux.nix
           ];
         };
+
         "leedsPC" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
