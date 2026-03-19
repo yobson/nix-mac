@@ -10,13 +10,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # mac-app-util.url = "github:hraban/mac-app-util";
     mac-app-util.url = "github:mcflis/mac-app-util/fix/missing-icons";
-    nix-rosetta-builder = {
-      url = "github:cpick/nix-rosetta-builder";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util, nix-rosetta-builder }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util }:
     let homeConf = user: {
       home-manager.extraSpecialArgs = {
         username = user;
@@ -48,7 +44,8 @@
         modules = [ 
           # Set Git commit hash for darwin-version.
           ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
-          ./amd64.nix
+          { nixpkgs.hostPlatform = "x86_64-darwin"; }
+          ./system/macos
           nix-homebrew.darwinModules.nix-homebrew { 
             nix-homebrew = {
               enable = true;
@@ -85,7 +82,8 @@
         modules = [ 
           # Set Git commit hash for darwin-version.
           ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
-          ./aarch64.nix
+          { nixpkgs.hostPlatform = "aarch64-darwin"; }
+          ./system/macos
           nix-homebrew.darwinModules.nix-homebrew { 
             nix-homebrew = {
               enable = true;
@@ -94,10 +92,6 @@
             };
           }
           home-manager.darwinModules.home-manager (homeConf "james.hobson")
-          nix-rosetta-builder.darwinModules.default {
-            # see available options in module.nix's `options.nix-rosetta-builder`
-            nix-rosetta-builder.onDemand = true;
-          }
           mac-app-util.darwinModules.default
         ];
       };

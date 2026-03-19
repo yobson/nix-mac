@@ -11,7 +11,7 @@
   else "/home/${username}";
 
   home.packages = with pkgs; [
-    (callPackage ./pkgs/gforth.nix {})
+    # (callPackage ./pkgs/gforth.nix {})
     plan9port
   ];
 

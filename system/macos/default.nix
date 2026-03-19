@@ -1,7 +1,7 @@
 { pkgs, config, homedir, user, ... }: 
 {
 
-  imports = [./modules/windows.nix];
+  imports = [ ../../modules/windows.nix ];
   nixpkgs.config.allowUnfree = true;
 
 # List packages installed in system profile. To search by name, run:
