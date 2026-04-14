@@ -12,6 +12,7 @@
 
   home.packages = with pkgs; [
     # (callPackage ./pkgs/gforth.nix {})
+    _4th
     plan9port
     git-crypt
   ];
@@ -35,6 +36,7 @@
       export PATH=$PATH:${pkgs.plan9port}/plan9/bin
       export LANG=en_GB.UTF-8
       export EDITOR=vim
+      export EDIT4TH=vim
     '';
   };
 
