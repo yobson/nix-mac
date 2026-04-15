@@ -15,6 +15,7 @@
     _4th
     plan9port
     git-crypt
+    fastfetch
   ];
 
   home.sessionVariables = {
