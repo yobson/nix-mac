@@ -108,9 +108,15 @@
           ./system/linux
           ./system/linux/wm.nix
           ./system/linux/hardware/macpro-1_1.nix
+          ./private/modules/hspace
           { 
             services.openssh.enable = true;
             boot.loader.systemd-boot.enable = false;
+            services.hspace = {
+              enable = true;
+              hostName = "macpro";
+              subnet = "10.0.0.3";
+            };
           }
           home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = { username = "james"; };
