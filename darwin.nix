@@ -10,6 +10,7 @@
     skimpdf
     unnaturalscrollwheels
     iina
+    mosh
   ];
 
   xdg.configFile = {

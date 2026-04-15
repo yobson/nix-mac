@@ -35,6 +35,7 @@
   "noefi" 
   "reboot=pci" 
   "nomodeset" 
+  "acpi_mask_gpe=0x11"
 ];
 
 

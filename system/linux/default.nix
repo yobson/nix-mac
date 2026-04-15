@@ -37,6 +37,7 @@
   };
   
   programs.nix-ld.enable = true;
+  programs.mosh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
