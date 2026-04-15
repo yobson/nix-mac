@@ -23,22 +23,26 @@
     QT_IM_MODULE="xim";
     ECORE_IMF_MODULE="xim";
     XMODIFIERS="@im=local";
+    PLAN9 = "${pkgs.plan9port}/plan9";
+    LANG = "en_GB.UTF-8";
+    EDIT4TH = "vim";
   };
+
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 
   targets.darwin.copyApps.enable = false;
   targets.darwin.linkApps.enable = pkgs.stdenv.isDarwin;
 
   programs.bash = {
     enable = true;
-    initExtra = ''
-      source ~/.ghcup/env
-      export PATH=$PATH:$HOME/.local/bin
-      export PLAN9=${pkgs.plan9port}/plan9
-      export PATH=$PATH:${pkgs.plan9port}/plan9/bin
-      export LANG=en_GB.UTF-8
-      export EDITOR=vim
-      export EDIT4TH=vim
-    '';
+    initExtra = lib.strings.concatStringsSep "\n" (
+      [ "export PATH=$PATH:${pkgs.plan9port}/plan9/bin" 
+      ] ++ lib.optionals pkgs.stdenv.isDarwin
+      [ "source ~/.ghcup/env"
+      ]
+    );
   };
 
   programs.gpg = {
