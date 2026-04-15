@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
   (writeShellScriptBin "nix-rebuild" ''
-    home-manager switch --flake /home/${username}/.config/home-manager#$(hostname)
+    sudo nixos-rebuild switch --flake /home/${username}/.config/nix#$(hostname)
   '')
     curl
   ];

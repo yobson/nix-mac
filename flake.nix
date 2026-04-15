@@ -103,6 +103,31 @@
         ];
       };
 
+      nixosConfigurations."nixos-macpro" = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./system/linux
+          ./system/linux/wm.nix
+          ./system/linux/hardware/macpro-1_1.nix
+          { 
+            services.openssh.enable = true;
+            boot.loader.systemd-boot.enable = false;
+          }
+          home-manager.nixosModules.home-manager {
+            home-manager.extraSpecialArgs = { username = "james"; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.james = { 
+              imports = [
+                ./home.nix
+                ./linux.nix
+                ./desktop.nix
+                # { editors.emacs.obsidianDir = "~/Obsidian/Notes"; }
+              ];
+            };
+          }
+        ];
+      };
+
       darwinConfigurations."htfdgm67md" = nix-darwin.lib.darwinSystem {
         specialArgs = {
           user = "james.hobson";

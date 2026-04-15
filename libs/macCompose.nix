@@ -96,6 +96,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = lib.optionals pkgs.stdenv.isLinux [ pkgs.setxkbmap ];
     home.file = if pkgs.stdenv.isDarwin then {
       "Library/KeyBindings/DefaultKeyBindingNix.dict" = {
         text = expand cfg.composeKey cfg.mapping;
