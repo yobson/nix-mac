@@ -48,6 +48,7 @@
     forcei686 = true;
   };
   boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader.systemd-boot.enable = false;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

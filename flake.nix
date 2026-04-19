@@ -111,7 +111,6 @@
           ./private/modules/hspace
           { 
             services.openssh.enable = true;
-            boot.loader.systemd-boot.enable = false;
             services.hspace = {
               enable = true;
               hostName = "macpro";
