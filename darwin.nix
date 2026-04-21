@@ -18,7 +18,7 @@
       source = pkgs.replaceVars ./dotfiles/scripts/open-term.sh {
         iTerm2 = if pkgs.stdenv.isDarwin
           then "${pkgs.iterm2}/Applications/iTerm2.app"
-          else "";
+        else "";
       };
       executable = true;
     };
@@ -26,6 +26,14 @@
       source = ./dotfiles/scripts/switch.sh;
       executable = true;
     };
+  };
+
+  home.shellAliases = {
+    vim = "nvim";
+  };
+
+  programs.bash = {
+    initExtra = "source ~/.ghcup/env";
   };
 
 }

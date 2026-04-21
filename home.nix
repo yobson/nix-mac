@@ -37,12 +37,7 @@
 
   programs.bash = {
     enable = true;
-    initExtra = lib.strings.concatStringsSep "\n" (
-      [ "export PATH=$PATH:${pkgs.plan9port}/plan9/bin" 
-      ] ++ lib.optionals pkgs.stdenv.isDarwin
-      [ "source ~/.ghcup/env"
-      ]
-    );
+    initExtra = "export PATH=$PATH:${pkgs.plan9port}/plan9/bin";
   };
 
   programs.gpg = {
