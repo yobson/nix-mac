@@ -11,6 +11,7 @@ in {
     (agda.withPackages (p: [ p.standard-library ]))
     (darwinAlt vlc vlc-bin)
     (darwinAlt libreoffice libreoffice-bin)
+    (darwinAlt jre8 jdk25_headless)
   ] ++ lib.optionals stdenv.isLinux [
       kicad
       freecad
