@@ -10,9 +10,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # mac-app-util.url = "github:hraban/mac-app-util";
     mac-app-util.url = "github:mcflis/mac-app-util/fix/missing-icons";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util, nixos-hardware }:
     let homeConf = user: {
       home-manager.extraSpecialArgs = {
         username = user;
@@ -87,6 +88,32 @@
           ./system/linux
           ./system/linux/wm.nix
           ./system/linux/hardware/laptop.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.extraSpecialArgs = { username = "james"; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.james = { 
+              imports = [
+                ./home.nix
+                ./linux.nix
+                ./desktop.nix
+                { editors.emacs.obsidianDir = "~/Obsidian/Notes"; }
+              ];
+            };
+          }
+        ];
+      };
+
+      nixosConfigurations."macbook-pro" = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./system/linux
+          ./system/linux/hardware/macbook-pro.nix
+          nixos-hardware.nixosModules.apple-t2
+          {
+            services.xserver.enable = true;
+            services.displayManager.gdm.enable = true;
+            services.desktopManager.gnome.enable = true;
+          }
           home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = { username = "james"; };
             home-manager.useGlobalPkgs = true;
