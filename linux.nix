@@ -6,5 +6,6 @@
     sudo nixos-rebuild switch --flake /home/${username}/.config/nix#$(hostname)
   '')
     curl
+    resources
   ];
 }

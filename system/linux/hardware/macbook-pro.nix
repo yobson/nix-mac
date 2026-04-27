@@ -14,6 +14,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  services.hardware.bolt.enable = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/dc0b49c3-bee6-424c-bbad-8fc61ae9b7ee";
@@ -41,4 +42,10 @@
       '';
     }))
   ];
+
+  systemd.sleep.settings.Sleep = {
+    MemorySleepMode = "s2idle";
+  };
+
+  programs.coolercontrol.enable = true;
 }

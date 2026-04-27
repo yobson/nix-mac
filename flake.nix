@@ -107,6 +107,7 @@
       nixosConfigurations."macbook-pro" = nixpkgs.lib.nixosSystem {
         modules = [
           ./system/linux
+          ./system/linux/games.nix
           ./system/linux/hardware/macbook-pro.nix
           nixos-hardware.nixosModules.apple-t2
           {
