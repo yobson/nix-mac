@@ -11,9 +11,10 @@
     # mac-app-util.url = "github:hraban/mac-app-util";
     mac-app-util.url = "github:mcflis/mac-app-util/fix/missing-icons";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    t2fan.url = "github:GnomedDev/T2FanRD";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util, nixos-hardware }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util, nixos-hardware, t2fan}:
     let homeConf = user: {
       home-manager.extraSpecialArgs = {
         username = user;
@@ -110,10 +111,12 @@
           ./system/linux/games.nix
           ./system/linux/hardware/macbook-pro.nix
           nixos-hardware.nixosModules.apple-t2
+          t2fan.nixosModules.t2fanrd
           {
             services.xserver.enable = true;
             services.displayManager.gdm.enable = true;
             services.desktopManager.gnome.enable = true;
+            services.openssh.enable = true;
           }
           home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = { username = "james"; };

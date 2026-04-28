@@ -19,6 +19,9 @@ in {
       firefox
       cambalache
       blueprint-compiler
+      newsflash
+      wike
+      wordbook
     ];
 
   editors.emacs.enable = true;

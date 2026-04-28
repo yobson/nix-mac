@@ -13,6 +13,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = ["pcie_ports=auto"];
   boot.extraModulePackages = [ ];
   services.hardware.bolt.enable = true;
 
@@ -47,5 +48,13 @@
     MemorySleepMode = "s2idle";
   };
 
-  programs.coolercontrol.enable = true;
+  hardware.apple-t2 = {
+    enableIGPU = true;
+    firmware.enable = true;
+  };
+
+  services.t2fanrd = {
+    enable = true;
+  };
+
 }
