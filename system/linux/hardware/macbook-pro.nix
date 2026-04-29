@@ -13,7 +13,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = ["pcie_ports=auto"];
+  boot.kernelParams = ["pcie_ports=auto" "mem_sleep_default=s2idle"];
   boot.extraModulePackages = [ ];
   services.hardware.bolt.enable = true;
 
@@ -55,6 +55,16 @@
 
   services.t2fanrd = {
     enable = true;
+    config.Fan1 = {
+      low_temp = 60;
+      high_temp = 90;
+      speed_curve = "exponential";
+    };
+    config.Fan2 = {
+      low_temp = 60;
+      high_temp = 90;
+      speed_curve = "exponential";
+    };
   };
 
 }
