@@ -60,6 +60,13 @@
     nssmdns6 = true;
   };
 
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    guiAddress = lib.mkDefault "localhost:8384";
+    user = "james";
+  };
+
   system.stateVersion = "25.11"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
