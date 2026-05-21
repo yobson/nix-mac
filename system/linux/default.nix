@@ -11,7 +11,12 @@
   boot.loader.systemd-boot.enable = lib.mkDefault true;
   boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager = { 
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openconnect
+    ];
+  };
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_GB.UTF-8";
 

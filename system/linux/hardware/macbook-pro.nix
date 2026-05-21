@@ -13,7 +13,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = ["pcie_ports=auto" "mem_sleep_default=s2idle"];
+  boot.kernelParams = [ "resume_offset=97652736" "pcie_ports=native" ];
   boot.extraModulePackages = [ ];
   services.hardware.bolt.enable = true;
 
@@ -28,25 +28,28 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  swapDevices = [ ];
+  # needed for hibernate
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 64*1024; # 16 GiB
+  }];
+  boot.resumeDevice = "/dev/disk/by-uuid/dc0b49c3-bee6-424c-bbad-8fc61ae9b7ee";
+  powerManagement.enable = true;
+
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  hardware.firmware = [
-    (pkgs.stdenvNoCC.mkDerivation (final: {
-      name = "brcm-firmware";
-      src = ../../../private/firmware/brcm;
-      installPhase = ''
-        mkdir -p $out/lib/firmware/brcm
-        cp ${final.src}/* "$out/lib/firmware/brcm"
-      '';
-    }))
-  ];
-
-  systemd.sleep.settings.Sleep = {
-    MemorySleepMode = "s2idle";
-  };
+  # hardware.firmware = [
+  #   (pkgs.stdenvNoCC.mkDerivation (final: {
+  #     name = "brcm-firmware";
+  #     src = ../../../private/firmware/brcm;
+  #     installPhase = ''
+  #       mkdir -p $out/lib/firmware/brcm
+  #       cp ${final.src}/* "$out/lib/firmware/brcm"
+  #     '';
+  #   }))
+  # ];
 
   hardware.apple-t2 = {
     enableIGPU = true;
@@ -56,13 +59,13 @@
   services.t2fanrd = {
     enable = true;
     config.Fan1 = {
-      low_temp = 60;
-      high_temp = 90;
+      low_temp = 50;
+      high_temp = 80;
       speed_curve = "exponential";
     };
     config.Fan2 = {
-      low_temp = 60;
-      high_temp = 90;
+      low_temp = 50;
+      high_temp = 80;
       speed_curve = "exponential";
     };
   };
