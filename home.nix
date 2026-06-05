@@ -16,6 +16,8 @@
     plan9port
     git-crypt
     fastfetch
+    onefetch
+    ncdu
   ];
 
   home.sessionVariables = {
