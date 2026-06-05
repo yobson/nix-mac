@@ -20,7 +20,7 @@
     quilt
     tex
     plan9port
-    ffmpeg_6-full
+    ffmpeg-full
   ];
 
   fonts.packages = with pkgs; [

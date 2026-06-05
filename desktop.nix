@@ -8,6 +8,7 @@ in {
     audacity
     musescore
     obsidian
+    qucs-s
     (agda.withPackages (p: [ p.standard-library ]))
     (darwinAlt vlc vlc-bin)
     (darwinAlt libreoffice libreoffice-bin)
@@ -22,6 +23,7 @@ in {
       newsflash
       wike
       wordbook
+      qlog
     ];
 
   editors.emacs.enable = true;
