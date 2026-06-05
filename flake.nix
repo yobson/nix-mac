@@ -10,9 +10,13 @@
     mac-app-util.url = "github:mcflis/mac-app-util/fix/missing-icons";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     t2fan.url = "github:GnomedDev/T2FanRD";
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util, nixos-hardware, t2fan}:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, mac-app-util, nixos-hardware, t2fan, system-manager}:
     let homeConf = user: {
       home-manager.extraSpecialArgs = {
         username = user;
@@ -35,28 +39,6 @@
     };
     in
       {
-      # Build darwin flake using:
-      darwinConfigurations."James-MacBook-Personal" = nix-darwin.lib.darwinSystem {
-        specialArgs = {
-          user = "jameshobson";
-          homedir = "/Users/jameshobson";
-        };
-        modules = [ 
-          # Set Git commit hash for darwin-version.
-          ({...}: { system.configurationRevision = self.rev or self.dirtyRev or null; })
-          { nixpkgs.hostPlatform = "x86_64-darwin"; }
-          ./system/macos
-          nix-homebrew.darwinModules.nix-homebrew { 
-            nix-homebrew = {
-              enable = true;
-              enableRosetta = false;
-              user = "jameshobson";
-            };
-          }
-          home-manager.darwinModules.home-manager (homeConf "jameshobson")
-          mac-app-util.darwinModules.default
-        ];
-      };
 
       nixosConfigurations."macvm" = nixpkgs.lib.nixosSystem {
         modules = [
@@ -187,6 +169,30 @@
           mac-app-util.darwinModules.default
         ];
       };
+
+      systemConfigs."helios64" = system-manager.lib.makeSystemConfig {
+        modules = [
+          { config.nixpkgs.hostPlatform = "aarch64-linux";
+            config.users.users.james = {
+              isNormalUser = true;
+              description = "James";
+              extraGroups = [ "sudo" ];
+            };
+          }
+          ./system/otherlinux
+          home-manager.nixosModules.home-manager {
+            home-manager.extraSpecialArgs = { username = "james"; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.james = { 
+              imports = [
+                ./home.nix
+              ];
+            };
+          }
+        ];
+      };
+
       homeConfigurations = {
         "rpi5-james" = let 
           pkgs = import nixpkgs { 

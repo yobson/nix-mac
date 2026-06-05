@@ -6,9 +6,9 @@
   ];
 
   home.username = username;
-  home.homeDirectory = if pkgs.stdenv.isDarwin 
+  home.homeDirectory = lib.mkForce (if pkgs.stdenv.isDarwin 
     then "/Users/${username}"
-  else "/home/${username}";
+  else "/home/${username}");
 
   home.packages = with pkgs; [
     # (callPackage ./pkgs/gforth.nix {})
