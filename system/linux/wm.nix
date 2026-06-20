@@ -15,28 +15,34 @@
 
     displayManager = { 
       # defaultSession = "none+xmonad";
-      ly.enable = true;
+      ly.enable = false;
       gdm = {
-        enable = false;
-        wayland = false;
+        enable = true;
       };
     };
 
+    desktopManager.gnome.enable = true;
+
 
     xserver = {
-      enable = true;
+      enable = false;
 
       windowManager.xmonad = {
         enable = false;
         enableContribAndExtras = true;
       };
-      desktopManager.enlightenment.enable = true;
+      desktopManager.enlightenment.enable = false;
 
       xkb.options = "caps:escape";
     };
   };
   environment.enlightenment.excludePackages = with pkgs.enlightenment; [
     econnman
+  ];
+
+  environment.systemPackages = with pkgs.gnomeExtensions; [
+    dash-to-dock
+    paperwm
   ];
 
   hardware.bluetooth.enable = true;

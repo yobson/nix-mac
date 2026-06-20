@@ -88,20 +88,13 @@
       nixosConfigurations."macbook-pro" = nixpkgs.lib.nixosSystem {
         modules = [
           ./system/linux
+          ./system/linux/wm.nix
           ./system/linux/games.nix
           ./system/linux/hardware/macbook-pro.nix
           ./modules/t2
           ./private/modules/vpn
           nixos-hardware.nixosModules.apple-t2
           t2fan.nixosModules.t2fanrd
-          ({pkgs,...}: {
-            services.displayManager.gdm.enable = true;
-            services.desktopManager.gnome.enable = true;
-            environment.systemPackages = with pkgs.gnomeExtensions; [
-              dash-to-dock
-              paperwm
-            ];
-          })
           home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = { username = "james"; };
             home-manager.useGlobalPkgs = true;
